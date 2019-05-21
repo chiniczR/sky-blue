@@ -1,0 +1,4 @@
+int main()
+{	
+	echo "hello world!"
+}
