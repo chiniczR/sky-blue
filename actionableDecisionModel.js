@@ -1,6 +1,6 @@
 
 /**
-*  Predictor for BESTSOLUTION from model/5ce1d99ade2d4d234d001add
+*  Predictor for BESTSOLUTION from model/5ce7d078db8b1d7564000919
 *  Predictive model by BigML - Machine Learning Made Easy
 */
 function predictBestsolution(data) {
@@ -16,14 +16,14 @@ function predictBestsolution(data) {
                 return "Take NSAID (Pain reliever)";
             }
             else if (data.currentproblem=="Headache") {
-                if (data.pbmi == null) {
+                if (data.phashighbloodpressure == null) {
                     return "Do some exercise (cardio)";
                 }
-                else if (data.pbmi > 26) {
-                    return "Do some exercise (cardio)";
-                }
-                else if (data.pbmi <= 26) {
+                else if (data.phashighbloodpressure=="0") {
                     return "Take Aspirin";
+                }
+                else if (data.phashighbloodpressure=="1") {
+                    return "Do some exercise (cardio)";
                 }
             }
             else if (data.currentproblem!="Headache") {
@@ -114,39 +114,34 @@ function predictBestsolution(data) {
                         }
                     }
                     else if (data.plasthospitalization!="01.01.2015") {
-                        if (data.hourswithproblem == null) {
-                            return "Take NSAID (Pain reliever)";
-                        }
-                        else if (data.hourswithproblem > 95) {
-                            if (data.pweight > 87) {
-                                if (data.pcognitiveimpairement == null) {
-                                    return "Take NSAID (Pain reliever)";
-                                }
-                                else if (data.pcognitiveimpairement=="none") {
-                                    return "Take NSAID (Pain reliever)";
-                                }
-                                else if (data.pcognitiveimpairement!="none") {
+                        if (data.pweight > 108) {
+                            if (data.pcurrentprescriptions == null) {
+                                return "Take acid reducer";
+                            }
+                            else if (data.pcurrentprescriptions=="none") {
+                                if (data.pbmi == null) {
                                     return "Take Aspirin";
                                 }
-                            }
-                            else if (data.pweight <= 87) {
-                                if (data.pweight > 71) {
-                                    if (data.phasosteoporosis == null) {
-                                        return "Drink tea";
-                                    }
-                                    else if (data.phasosteoporosis=="0") {
-                                        return "Drink tea";
-                                    }
-                                    else if (data.phasosteoporosis=="1") {
-                                        return "Have a cold bath";
-                                    }
+                                else if (data.pbmi > 23) {
+                                    return "Take Aspirin";
                                 }
-                                else if (data.pweight <= 71) {
-                                    return "Take NSAID (Pain reliever)";
+                                else if (data.pbmi <= 23) {
+                                    return "Eat fruit";
+                                }
+                            }
+                            else if (data.pcurrentprescriptions!="none") {
+                                if (data.pheartdisease == null) {
+                                    return "Take acid reducer";
+                                }
+                                else if (data.pheartdisease=="none") {
+                                    return "Take acid reducer";
+                                }
+                                else if (data.pheartdisease!="none") {
+                                    return "Do some exercise (cardio)";
                                 }
                             }
                         }
-                        else if (data.hourswithproblem <= 95) {
+                        else if (data.pweight <= 108) {
                             if (data.pheartdisease == null) {
                                 return "Take NSAID (Pain reliever)";
                             }
@@ -157,21 +152,29 @@ function predictBestsolution(data) {
                                     }
                                     else if (data.pweight <= 100) {
                                         if (data.pbmi == null) {
+                                            return "Take NSAID (Pain reliever)";
+                                        }
+                                        else if (data.pbmi > 25) {
                                             return "Have a cold bath";
                                         }
-                                        else if (data.pbmi > 22) {
-                                            return "Have a cold bath";
-                                        }
-                                        else if (data.pbmi <= 22) {
-                                            return "Drink tea";
+                                        else if (data.pbmi <= 25) {
+                                            if (data.pweight > 68) {
+                                                return "Take NSAID (Pain reliever)";
+                                            }
+                                            else if (data.pweight <= 68) {
+                                                return "Take Aspirin";
+                                            }
                                         }
                                     }
                                 }
                                 else if (data.page <= 79) {
-                                    if (data.hourswithproblem > 61) {
-                                        return "Call doctor immediately";
+                                    if (data.pcurrentprescriptions == null) {
+                                        return "Eat hot mushroom soup";
                                     }
-                                    else if (data.hourswithproblem <= 61) {
+                                    else if (data.pcurrentprescriptions=="Hydrocodone-Acetaminophen") {
+                                        return "Take muscle reliever";
+                                    }
+                                    else if (data.pcurrentprescriptions!="Hydrocodone-Acetaminophen") {
                                         if (data.pweight > 79) {
                                             return "Take NSAID (Pain reliever)";
                                         }
@@ -182,503 +185,529 @@ function predictBestsolution(data) {
                                 }
                             }
                             else if (data.pheartdisease!="Heart Arrhythmia") {
-                                if (data.pweight > 108) {
-                                    if (data.pgender == null) {
-                                        return "Take acid reducer";
-                                    }
-                                    else if (data.pgender=="f") {
-                                        if (data.plasthospitalization=="00.00.0000") {
-                                            if (data.pcurrentprescriptions == null) {
-                                                return "Take acid reducer";
-                                            }
-                                            else if (data.pcurrentprescriptions=="none") {
-                                                return "Drink tea";
-                                            }
-                                            else if (data.pcurrentprescriptions!="none") {
-                                                return "Take acid reducer";
-                                            }
-                                        }
-                                        else if (data.plasthospitalization!="00.00.0000") {
-                                            return "Drink tea";
-                                        }
-                                    }
-                                    else if (data.pgender=="m") {
+                                if (data.pallergies == null) {
+                                    return "Take NSAID (Pain reliever)";
+                                }
+                                else if (data.pallergies=="Wheat") {
+                                    if (data.pbmi == null) {
                                         return "Take Aspirin";
                                     }
-                                }
-                                else if (data.pweight <= 108) {
-                                    if (data.hourswithproblem > 6) {
-                                        if (data.phasepilepsy == null) {
-                                            return "Take NSAID (Pain reliever)";
-                                        }
-                                        else if (data.phasepilepsy=="0") {
-                                            if (data.pbmi == null) {
-                                                return "Take NSAID (Pain reliever)";
+                                    else if (data.pbmi > 28) {
+                                        if (data.pbmi > 31) {
+                                            if (data.pheartdisease=="none") {
+                                                return "Eat fruit";
                                             }
-                                            else if (data.pbmi > 18) {
-                                                if (data.prespiratorydisease == null) {
+                                            else if (data.pheartdisease!="none") {
+                                                return "Take Aspirin";
+                                            }
+                                        }
+                                        else if (data.pbmi <= 31) {
+                                            if (data.plasthospitalization=="01.01.2019") {
+                                                return "Drink tea";
+                                            }
+                                            else if (data.plasthospitalization!="01.01.2019") {
+                                                return "Take Aspirin";
+                                            }
+                                        }
+                                    }
+                                    else if (data.pbmi <= 28) {
+                                        if (data.page > 99) {
+                                            if (data.phasosteoporosis == null) {
+                                                return "Eat fruit";
+                                            }
+                                            else if (data.phasosteoporosis=="0") {
+                                                if (data.pcognitiveimpairement == null) {
+                                                    return "Eat fruit";
+                                                }
+                                                else if (data.pcognitiveimpairement=="none") {
+                                                    return "Eat fruit";
+                                                }
+                                                else if (data.pcognitiveimpairement!="none") {
                                                     return "Take NSAID (Pain reliever)";
                                                 }
-                                                else if (data.prespiratorydisease=="Asthma") {
-                                                    if (data.hourswithproblem > 54) {
-                                                        if (data.pbmi > 28) {
-                                                            return "Eat hot mushroom soup";
-                                                        }
-                                                        else if (data.pbmi <= 28) {
-                                                            return "Take acid reducer";
-                                                        }
+                                            }
+                                            else if (data.phasosteoporosis=="1") {
+                                                return "Call doctor immediately";
+                                            }
+                                        }
+                                        else if (data.page <= 99) {
+                                            if (data.pmentalillness == null) {
+                                                return "Drink tea";
+                                            }
+                                            else if (data.pmentalillness=="Anxiety") {
+                                                return "Call doctor immediately";
+                                            }
+                                            else if (data.pmentalillness!="Anxiety") {
+                                                if (data.currentproblem == null) {
+                                                    return "Drink tea";
+                                                }
+                                                else if (data.currentproblem=="Headache") {
+                                                    return "Take muscle reliever";
+                                                }
+                                                else if (data.currentproblem!="Headache") {
+                                                    if (data.currentproblem=="Heartburn") {
+                                                        return "Take NSAID (Pain reliever)";
                                                     }
-                                                    else if (data.hourswithproblem <= 54) {
-                                                        if (data.phasosteoporosis == null) {
-                                                            return "Take Aspirin";
+                                                    else if (data.currentproblem!="Heartburn") {
+                                                        if (data.pgender == null) {
+                                                            return "Drink tea";
                                                         }
-                                                        else if (data.phasosteoporosis=="0") {
-                                                            if (data.hourswithproblem > 33) {
-                                                                return "Take NSAID (Pain reliever)";
-                                                            }
-                                                            else if (data.hourswithproblem <= 33) {
-                                                                return "Drink tea";
-                                                            }
+                                                        else if (data.pgender=="f") {
+                                                            return "Drink tea";
                                                         }
-                                                        else if (data.phasosteoporosis=="1") {
-                                                            return "Take Aspirin";
+                                                        else if (data.pgender=="m") {
+                                                            if (data.pcurrentprescriptions == null) {
+                                                                return "Take Aspirin";
+                                                            }
+                                                            else if (data.pcurrentprescriptions=="Zostrol & Prinivil (Lisinopril)") {
+                                                                return "Take Aspirin";
+                                                            }
+                                                            else if (data.pcurrentprescriptions!="Zostrol & Prinivil (Lisinopril)") {
+                                                                if (data.plastseizure == null) {
+                                                                    return "Drink tea";
+                                                                }
+                                                                else if (data.plastseizure=="00.00.0000") {
+                                                                    return "Drink tea";
+                                                                }
+                                                                else if (data.plastseizure!="00.00.0000") {
+                                                                    return "Take Aspirin";
+                                                                }
+                                                            }
                                                         }
                                                     }
                                                 }
-                                                else if (data.prespiratorydisease!="Asthma") {
-                                                    if (data.pcurrentprescriptions == null) {
+                                            }
+                                        }
+                                    }
+                                }
+                                else if (data.pallergies!="Wheat") {
+                                    if (data.pbmi == null) {
+                                        return "Take NSAID (Pain reliever)";
+                                    }
+                                    else if (data.pbmi > 18) {
+                                        if (data.currentproblem == null) {
+                                            return "Take NSAID (Pain reliever)";
+                                        }
+                                        else if (data.currentproblem=="Sour Throat") {
+                                            if (data.page > 76) {
+                                                if (data.phasosteoporosis == null) {
+                                                    return "Eat fruit";
+                                                }
+                                                else if (data.phasosteoporosis=="0") {
+                                                    return "Eat fruit";
+                                                }
+                                                else if (data.phasosteoporosis=="1") {
+                                                    if (data.phashighbloodpressure == null) {
                                                         return "Take NSAID (Pain reliever)";
                                                     }
-                                                    else if (data.pcurrentprescriptions=="Zostrol & Prinivil (Lisinopril)") {
-                                                        if (data.hourswithproblem > 35) {
+                                                    else if (data.phashighbloodpressure=="0") {
+                                                        return "Take NSAID (Pain reliever)";
+                                                    }
+                                                    else if (data.phashighbloodpressure=="1") {
+                                                        return "Eat fruit";
+                                                    }
+                                                }
+                                            }
+                                            else if (data.page <= 76) {
+                                                return "Take acid reducer";
+                                            }
+                                        }
+                                        else if (data.currentproblem!="Sour Throat") {
+                                            if (data.phashypertension == null) {
+                                                return "Take NSAID (Pain reliever)";
+                                            }
+                                            else if (data.phashypertension=="0") {
+                                                if (data.pweight > 64) {
+                                                    if (data.page > 78) {
+                                                        if (data.pallergies=="Peanuts") {
                                                             if (data.pmentalillness == null) {
                                                                 return "Take Aspirin";
                                                             }
                                                             else if (data.pmentalillness=="none") {
-                                                                if (data.pweight > 100) {
-                                                                    return "Take acid reducer";
+                                                                if (data.pweight > 94) {
+                                                                    return "Take NSAID (Pain reliever)";
                                                                 }
-                                                                else if (data.pweight <= 100) {
-                                                                    if (data.pbmi > 30) {
+                                                                else if (data.pweight <= 94) {
+                                                                    if (data.prespiratorydisease == null) {
+                                                                        return "Take Aspirin";
+                                                                    }
+                                                                    else if (data.prespiratorydisease=="Bronchitis") {
                                                                         return "Take NSAID (Pain reliever)";
                                                                     }
-                                                                    else if (data.pbmi <= 30) {
-                                                                        if (data.hourswithproblem > 91) {
-                                                                            return "Drink tea";
-                                                                        }
-                                                                        else if (data.hourswithproblem <= 91) {
-                                                                            return "Take Aspirin";
-                                                                        }
+                                                                    else if (data.prespiratorydisease!="Bronchitis") {
+                                                                        return "Take Aspirin";
                                                                     }
                                                                 }
                                                             }
                                                             else if (data.pmentalillness!="none") {
-                                                                return "Take acid reducer";
-                                                            }
-                                                        }
-                                                        else if (data.hourswithproblem <= 35) {
-                                                            if (data.phashypertension == null) {
-                                                                return "Take NSAID (Pain reliever)";
-                                                            }
-                                                            else if (data.phashypertension=="0") {
-                                                                return "Take NSAID (Pain reliever)";
-                                                            }
-                                                            else if (data.phashypertension=="1") {
                                                                 return "Eat fruit";
                                                             }
                                                         }
-                                                    }
-                                                    else if (data.pcurrentprescriptions!="Zostrol & Prinivil (Lisinopril)") {
-                                                        if (data.page > 76) {
-                                                            if (data.currentproblem == null) {
-                                                                return "Take NSAID (Pain reliever)";
-                                                            }
-                                                            else if (data.currentproblem=="Sour Throat") {
-                                                                if (data.phashypertension == null) {
-                                                                    return "Eat fruit";
+                                                        else if (data.pallergies!="Peanuts") {
+                                                            if (data.page > 114) {
+                                                                if (data.pbmi > 22) {
+                                                                    return "Take acid reducer";
                                                                 }
-                                                                else if (data.phashypertension=="0") {
+                                                                else if (data.pbmi <= 22) {
+                                                                    return "Have a cold bath";
+                                                                }
+                                                            }
+                                                            else if (data.page <= 114) {
+                                                                if (data.plastheartevent == null) {
+                                                                    return "Take NSAID (Pain reliever)";
+                                                                }
+                                                                else if (data.plastheartevent=="00.00.0000") {
                                                                     if (data.pbmi > 21) {
-                                                                        return "Eat fruit";
-                                                                    }
-                                                                    else if (data.pbmi <= 21) {
-                                                                        return "Eat hot mushroom soup";
-                                                                    }
-                                                                }
-                                                                else if (data.phashypertension=="1") {
-                                                                    return "Take NSAID (Pain reliever)";
-                                                                }
-                                                            }
-                                                            else if (data.currentproblem!="Sour Throat") {
-                                                                if (data.pallergies == null) {
-                                                                    return "Take NSAID (Pain reliever)";
-                                                                }
-                                                                else if (data.pallergies=="Peanuts") {
-                                                                    if (data.hourswithproblem > 35) {
-                                                                        if (data.pcurrentprescriptions=="none") {
-                                                                            if (data.phashypertension == null) {
+                                                                        if (data.pdiabetestype == null) {
+                                                                            return "Take Aspirin";
+                                                                        }
+                                                                        else if (data.pdiabetestype > 0) {
+                                                                            if (data.phashighbloodpressure == null) {
                                                                                 return "Take NSAID (Pain reliever)";
                                                                             }
-                                                                            else if (data.phashypertension=="0") {
+                                                                            else if (data.phashighbloodpressure=="0") {
                                                                                 return "Take NSAID (Pain reliever)";
                                                                             }
-                                                                            else if (data.phashypertension=="1") {
-                                                                                return "Take acid reducer";
+                                                                            else if (data.phashighbloodpressure=="1") {
+                                                                                return "Eat fruit";
                                                                             }
                                                                         }
-                                                                        else if (data.pcurrentprescriptions!="none") {
-                                                                            return "Do some exercise (cardio)";
-                                                                        }
-                                                                    }
-                                                                    else if (data.hourswithproblem <= 35) {
-                                                                        if (data.hourswithproblem > 28) {
-                                                                            return "Eat fruit";
-                                                                        }
-                                                                        else if (data.hourswithproblem <= 28) {
-                                                                            if (data.plasthospitalization=="00.00.0000") {
-                                                                                return "Take Aspirin";
-                                                                            }
-                                                                            else if (data.plasthospitalization!="00.00.0000") {
-                                                                                return "Have a cold bath";
-                                                                            }
-                                                                        }
-                                                                    }
-                                                                }
-                                                                else if (data.pallergies!="Peanuts") {
-                                                                    if (data.pweight > 90) {
-                                                                        if (data.pcurrentprescriptions=="Hydrocodone-Acetaminophen") {
-                                                                            return "Take NSAID (Pain reliever)";
-                                                                        }
-                                                                        else if (data.pcurrentprescriptions!="Hydrocodone-Acetaminophen") {
-                                                                            if (data.pweight > 98) {
-                                                                                if (data.currentproblem=="Stomachache or stoma") {
-                                                                                    return "Eat fruit";
-                                                                                }
-                                                                                else if (data.currentproblem!="Stomachache or stoma") {
-                                                                                    if (data.page > 95) {
-                                                                                        return "Take acid reducer";
-                                                                                    }
-                                                                                    else if (data.page <= 95) {
-                                                                                        if (data.hourswithproblem > 18) {
-                                                                                            return "Eat fruit";
+                                                                        else if (data.pdiabetestype <= 0) {
+                                                                            if (data.pweight > 74) {
+                                                                                if (data.pweight > 91) {
+                                                                                    if (data.page > 104) {
+                                                                                        if (data.currentproblem=="Back Pain") {
+                                                                                            return "Take Aspirin";
                                                                                         }
-                                                                                        else if (data.hourswithproblem <= 18) {
-                                                                                            return "Take acid reducer";
+                                                                                        else if (data.currentproblem!="Back Pain") {
+                                                                                            return "Eat hot mushroom soup";
                                                                                         }
                                                                                     }
-                                                                                }
-                                                                            }
-                                                                            else if (data.pweight <= 98) {
-                                                                                if (data.hourswithproblem > 60) {
-                                                                                    return "Drink tea";
-                                                                                }
-                                                                                else if (data.hourswithproblem <= 60) {
-                                                                                    if (data.phasosteoporosis == null) {
-                                                                                        return "Take NSAID (Pain reliever)";
-                                                                                    }
-                                                                                    else if (data.phasosteoporosis=="0") {
-                                                                                        return "Take NSAID (Pain reliever)";
-                                                                                    }
-                                                                                    else if (data.phasosteoporosis=="1") {
-                                                                                        return "Take NSAID (Pain reliever)";
-                                                                                    }
-                                                                                }
-                                                                            }
-                                                                        }
-                                                                    }
-                                                                    else if (data.pweight <= 90) {
-                                                                        if (data.hourswithproblem > 16) {
-                                                                            if (data.hourswithproblem > 74) {
-                                                                                if (data.hourswithproblem > 81) {
-                                                                                    if (data.pbmi > 22) {
-                                                                                        return "Take NSAID (Pain reliever)";
-                                                                                    }
-                                                                                    else if (data.pbmi <= 22) {
-                                                                                        return "Take acid reducer";
-                                                                                    }
-                                                                                }
-                                                                                else if (data.hourswithproblem <= 81) {
-                                                                                    if (data.hourswithproblem > 76) {
-                                                                                        return "Eat hot mushroom soup";
-                                                                                    }
-                                                                                    else if (data.hourswithproblem <= 76) {
-                                                                                        return "Drink tea";
-                                                                                    }
-                                                                                }
-                                                                            }
-                                                                            else if (data.hourswithproblem <= 74) {
-                                                                                if (data.phashypertension == null) {
-                                                                                    return "Take acid reducer";
-                                                                                }
-                                                                                else if (data.phashypertension=="0") {
-                                                                                    if (data.pweight > 74) {
-                                                                                        if (data.pweight > 82) {
-                                                                                            if (data.hourswithproblem > 47) {
-                                                                                                if (data.pmentalillness == null) {
-                                                                                                    return "Call doctor immediately";
-                                                                                                }
-                                                                                                else if (data.pmentalillness=="none") {
-                                                                                                    return "Call doctor immediately";
-                                                                                                }
-                                                                                                else if (data.pmentalillness!="none") {
-                                                                                                    return "Take muscle reliever";
-                                                                                                }
-                                                                                            }
-                                                                                            else if (data.hourswithproblem <= 47) {
-                                                                                                return "Take NSAID (Pain reliever)";
-                                                                                            }
-                                                                                        }
-                                                                                        else if (data.pweight <= 82) {
-                                                                                            if (data.pmentalillness == null) {
-                                                                                                return "Take Aspirin";
-                                                                                            }
-                                                                                            else if (data.pmentalillness=="none") {
-                                                                                                return "Take Aspirin";
-                                                                                            }
-                                                                                            else if (data.pmentalillness!="none") {
-                                                                                                return "Drink tea";
-                                                                                            }
-                                                                                        }
-                                                                                    }
-                                                                                    else if (data.pweight <= 74) {
+                                                                                    else if (data.page <= 104) {
                                                                                         if (data.currentproblem=="Migrane") {
                                                                                             return "Take Aspirin";
                                                                                         }
                                                                                         else if (data.currentproblem!="Migrane") {
-                                                                                            if (data.page > 99) {
-                                                                                                return "Drink tea";
+                                                                                            if (data.pmentalillness == null) {
+                                                                                                return "Take NSAID (Pain reliever)";
                                                                                             }
-                                                                                            else if (data.page <= 99) {
-                                                                                                if (data.psmokes == null) {
-                                                                                                    return "Take NSAID (Pain reliever)";
-                                                                                                }
-                                                                                                else if (data.psmokes=="0") {
-                                                                                                    return "Take muscle reliever";
-                                                                                                }
-                                                                                                else if (data.psmokes=="1") {
-                                                                                                    return "Drink tea";
-                                                                                                }
+                                                                                            else if (data.pmentalillness=="Major Depression") {
+                                                                                                return "Eat fruit";
+                                                                                            }
+                                                                                            else if (data.pmentalillness!="Major Depression") {
+                                                                                                return "Take NSAID (Pain reliever)";
                                                                                             }
                                                                                         }
                                                                                     }
                                                                                 }
-                                                                                else if (data.phashypertension=="1") {
-                                                                                    if (data.currentproblem=="Chest Pain") {
-                                                                                        return "Call doctor immediately";
+                                                                                else if (data.pweight <= 91) {
+                                                                                    if (data.pgender == null) {
+                                                                                        return "Take Aspirin";
                                                                                     }
-                                                                                    else if (data.currentproblem!="Chest Pain") {
-                                                                                        if (data.pbmi > 27) {
-                                                                                            return "Take NSAID (Pain reliever)";
-                                                                                        }
-                                                                                        else if (data.pbmi <= 27) {
+                                                                                    else if (data.pgender=="f") {
+                                                                                        if (data.currentproblem=="Migrane") {
                                                                                             return "Take acid reducer";
                                                                                         }
+                                                                                        else if (data.currentproblem!="Migrane") {
+                                                                                            return "Take Aspirin";
+                                                                                        }
+                                                                                    }
+                                                                                    else if (data.pgender=="m") {
+                                                                                        if (data.pbmi > 28) {
+                                                                                            if (data.pweight > 76) {
+                                                                                                return "Take Aspirin";
+                                                                                            }
+                                                                                            else if (data.pweight <= 76) {
+                                                                                                return "Take acid reducer";
+                                                                                            }
+                                                                                        }
+                                                                                        else if (data.pbmi <= 28) {
+                                                                                            return "Drink tea";
+                                                                                        }
                                                                                     }
                                                                                 }
                                                                             }
-                                                                        }
-                                                                        else if (data.hourswithproblem <= 16) {
-                                                                            if (data.phashypertension == null) {
-                                                                                return "Take NSAID (Pain reliever)";
-                                                                            }
-                                                                            else if (data.phashypertension=="0") {
-                                                                                return "Take NSAID (Pain reliever)";
-                                                                            }
-                                                                            else if (data.phashypertension=="1") {
-                                                                                return "Eat hot mushroom soup";
+                                                                            else if (data.pweight <= 74) {
+                                                                                if (data.pbmi > 28) {
+                                                                                    return "Eat fruit";
+                                                                                }
+                                                                                else if (data.pbmi <= 28) {
+                                                                                    return "Drink tea";
+                                                                                }
                                                                             }
                                                                         }
+                                                                    }
+                                                                    else if (data.pbmi <= 21) {
+                                                                        if (data.pweight > 86) {
+                                                                            if (data.psmokes == null) {
+                                                                                return "Take NSAID (Pain reliever)";
+                                                                            }
+                                                                            else if (data.psmokes=="0") {
+                                                                                return "Drink tea";
+                                                                            }
+                                                                            else if (data.psmokes=="1") {
+                                                                                return "Take NSAID (Pain reliever)";
+                                                                            }
+                                                                        }
+                                                                        else if (data.pweight <= 86) {
+                                                                            if (data.pweight > 76) {
+                                                                                return "Call doctor immediately";
+                                                                            }
+                                                                            else if (data.pweight <= 76) {
+                                                                                return "Take NSAID (Pain reliever)";
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                }
+                                                                else if (data.plastheartevent!="00.00.0000") {
+                                                                    if (data.pweight > 88) {
+                                                                        return "Take acid reducer";
+                                                                    }
+                                                                    else if (data.pweight <= 88) {
+                                                                        return "Take Aspirin";
                                                                     }
                                                                 }
                                                             }
                                                         }
-                                                        else if (data.page <= 76) {
-                                                            if (data.pweight > 101) {
+                                                    }
+                                                    else if (data.page <= 78) {
+                                                        if (data.pbmi > 25) {
+                                                            if (data.pallergies=="Peanuts") {
+                                                                return "Drink tea";
+                                                            }
+                                                            else if (data.pallergies!="Peanuts") {
+                                                                if (data.currentproblem=="Back Pain") {
+                                                                    return "Take Aspirin";
+                                                                }
+                                                                else if (data.currentproblem!="Back Pain") {
+                                                                    return "Take NSAID (Pain reliever)";
+                                                                }
+                                                            }
+                                                        }
+                                                        else if (data.pbmi <= 25) {
+                                                            if (data.phasosteoporosis == null) {
+                                                                return "Take Aspirin";
+                                                            }
+                                                            else if (data.phasosteoporosis=="0") {
+                                                                if (data.pallergies=="Soy") {
+                                                                    if (data.psmokes == null) {
+                                                                        return "Take NSAID (Pain reliever)";
+                                                                    }
+                                                                    else if (data.psmokes=="0") {
+                                                                        return "Take Aspirin";
+                                                                    }
+                                                                    else if (data.psmokes=="1") {
+                                                                        return "Take NSAID (Pain reliever)";
+                                                                    }
+                                                                }
+                                                                else if (data.pallergies!="Soy") {
+                                                                    if (data.pcurrentprescriptions == null) {
+                                                                        return "Take Aspirin";
+                                                                    }
+                                                                    else if (data.pcurrentprescriptions=="none") {
+                                                                        return "Eat fruit";
+                                                                    }
+                                                                    else if (data.pcurrentprescriptions!="none") {
+                                                                        return "Take Aspirin";
+                                                                    }
+                                                                }
+                                                            }
+                                                            else if (data.phasosteoporosis=="1") {
                                                                 if (data.phashighbloodpressure == null) {
                                                                     return "Take acid reducer";
                                                                 }
                                                                 else if (data.phashighbloodpressure=="0") {
-                                                                    if (data.psmokes == null) {
-                                                                        return "Drink tea";
+                                                                    if (data.pallergies=="none") {
+                                                                        return "Take NSAID (Pain reliever)";
                                                                     }
-                                                                    else if (data.psmokes=="0") {
-                                                                        return "Drink tea";
-                                                                    }
-                                                                    else if (data.psmokes=="1") {
-                                                                        return "Eat fruit";
+                                                                    else if (data.pallergies!="none") {
+                                                                        return "Have a cold bath";
                                                                     }
                                                                 }
                                                                 else if (data.phashighbloodpressure=="1") {
                                                                     return "Take acid reducer";
                                                                 }
                                                             }
-                                                            else if (data.pweight <= 101) {
-                                                                if (data.pweight > 69) {
-                                                                    if (data.prespiratorydisease=="none") {
-                                                                        if (data.page > 71) {
-                                                                            if (data.pcurrentprescriptions=="none") {
-                                                                                return "Take muscle reliever";
-                                                                            }
-                                                                            else if (data.pcurrentprescriptions!="none") {
-                                                                                return "Take Aspirin";
-                                                                            }
-                                                                        }
-                                                                        else if (data.page <= 71) {
-                                                                            if (data.hourswithproblem > 21) {
-                                                                                if (data.currentproblem == null) {
-                                                                                    return "Take NSAID (Pain reliever)";
-                                                                                }
-                                                                                else if (data.currentproblem=="Migrane") {
-                                                                                    return "Take NSAID (Pain reliever)";
-                                                                                }
-                                                                                else if (data.currentproblem!="Migrane") {
-                                                                                    if (data.pweight > 83) {
-                                                                                        return "Take NSAID (Pain reliever)";
-                                                                                    }
-                                                                                    else if (data.pweight <= 83) {
-                                                                                        return "Do some exercise (cardio)";
-                                                                                    }
-                                                                                }
-                                                                            }
-                                                                            else if (data.hourswithproblem <= 21) {
-                                                                                return "Take NSAID (Pain reliever)";
-                                                                            }
-                                                                        }
-                                                                    }
-                                                                    else if (data.prespiratorydisease!="none") {
-                                                                        return "Take acid reducer";
-                                                                    }
-                                                                }
-                                                                else if (data.pweight <= 69) {
-                                                                    if (data.phasosteoporosis == null) {
-                                                                        return "Eat fruit";
-                                                                    }
-                                                                    else if (data.phasosteoporosis=="0") {
-                                                                        if (data.pbmi > 20) {
-                                                                            return "Take acid reducer";
-                                                                        }
-                                                                        else if (data.pbmi <= 20) {
-                                                                            return "Eat fruit";
-                                                                        }
-                                                                    }
-                                                                    else if (data.phasosteoporosis=="1") {
-                                                                        return "Have a cold bath";
-                                                                    }
-                                                                }
+                                                        }
+                                                    }
+                                                }
+                                                else if (data.pweight <= 64) {
+                                                    if (data.page > 77) {
+                                                        if (data.currentproblem=="Migrane") {
+                                                            return "Take acid reducer";
+                                                        }
+                                                        else if (data.currentproblem!="Migrane") {
+                                                            if (data.pweight > 58) {
+                                                                return "Take NSAID (Pain reliever)";
                                                             }
+                                                            else if (data.pweight <= 58) {
+                                                                return "Take acid reducer";
+                                                            }
+                                                        }
+                                                    }
+                                                    else if (data.page <= 77) {
+                                                        if (data.plastheartevent == null) {
+                                                            return "Eat fruit";
+                                                        }
+                                                        else if (data.plastheartevent=="00.00.0000") {
+                                                            return "Have a cold bath";
+                                                        }
+                                                        else if (data.plastheartevent!="00.00.0000") {
+                                                            return "Eat fruit";
                                                         }
                                                     }
                                                 }
                                             }
-                                            else if (data.pbmi <= 18) {
-                                                if (data.phasosteoporosis == null) {
-                                                    return "Take NSAID (Pain reliever)";
-                                                }
-                                                else if (data.phasosteoporosis=="0") {
-                                                    if (data.pgender == null) {
-                                                        return "Take Aspirin";
+                                            else if (data.phashypertension=="1") {
+                                                if (data.currentproblem=="Stomachache or stoma") {
+                                                    if (data.pbmi > 21) {
+                                                        return "Take NSAID (Pain reliever)";
                                                     }
-                                                    else if (data.pgender=="f") {
-                                                        if (data.pheartdisease=="none") {
-                                                            if (data.pweight > 97) {
-                                                                return "Take muscle reliever";
-                                                            }
-                                                            else if (data.pweight <= 97) {
-                                                                return "Take NSAID (Pain reliever)";
-                                                            }
+                                                    else if (data.pbmi <= 21) {
+                                                        return "Take acid reducer";
+                                                    }
+                                                }
+                                                else if (data.currentproblem!="Stomachache or stoma") {
+                                                    if (data.currentproblem=="Migrane") {
+                                                        if (data.page > 96) {
+                                                            return "Do some exercise (cardio)";
                                                         }
-                                                        else if (data.pheartdisease!="none") {
+                                                        else if (data.page <= 96) {
                                                             return "Take acid reducer";
                                                         }
                                                     }
-                                                    else if (data.pgender=="m") {
-                                                        if (data.prespiratorydisease == null) {
-                                                            return "Take Aspirin";
+                                                    else if (data.currentproblem!="Migrane") {
+                                                        if (data.psmokes == null) {
+                                                            return "Take acid reducer";
                                                         }
-                                                        else if (data.prespiratorydisease=="none") {
-                                                            if (data.hourswithproblem > 74) {
+                                                        else if (data.psmokes=="0") {
+                                                            if (data.page > 102) {
                                                                 return "Take acid reducer";
                                                             }
-                                                            else if (data.hourswithproblem <= 74) {
-                                                                return "Take Aspirin";
+                                                            else if (data.page <= 102) {
+                                                                if (data.page > 66) {
+                                                                    if (data.pweight > 64) {
+                                                                        return "Drink tea";
+                                                                    }
+                                                                    else if (data.pweight <= 64) {
+                                                                        return "Eat fruit";
+                                                                    }
+                                                                }
+                                                                else if (data.page <= 66) {
+                                                                    return "Take acid reducer";
+                                                                }
                                                             }
                                                         }
-                                                        else if (data.prespiratorydisease!="none") {
-                                                            return "Take NSAID (Pain reliever)";
+                                                        else if (data.psmokes=="1") {
+                                                            if (data.pallergies=="Soy") {
+                                                                return "Take acid reducer";
+                                                            }
+                                                            else if (data.pallergies!="Soy") {
+                                                                if (data.page > 71) {
+                                                                    if (data.pweight > 81) {
+                                                                        if (data.pallergies=="Peanuts") {
+                                                                            return "Take Aspirin";
+                                                                        }
+                                                                        else if (data.pallergies!="Peanuts") {
+                                                                            return "Eat fruit";
+                                                                        }
+                                                                    }
+                                                                    else if (data.pweight <= 81) {
+                                                                        if (data.pgender == null) {
+                                                                            return "Take NSAID (Pain reliever)";
+                                                                        }
+                                                                        else if (data.pgender=="f") {
+                                                                            return "Take NSAID (Pain reliever)";
+                                                                        }
+                                                                        else if (data.pgender=="m") {
+                                                                            return "Drink tea";
+                                                                        }
+                                                                    }
+                                                                }
+                                                                else if (data.page <= 71) {
+                                                                    if (data.currentproblem=="Back Pain") {
+                                                                        return "Call doctor immediately";
+                                                                    }
+                                                                    else if (data.currentproblem!="Back Pain") {
+                                                                        return "Eat fruit";
+                                                                    }
+                                                                }
+                                                            }
                                                         }
                                                     }
                                                 }
-                                                else if (data.phasosteoporosis=="1") {
-                                                    if (data.hourswithproblem > 31) {
-                                                        if (data.plastseizure == null) {
-                                                            return "Take NSAID (Pain reliever)";
-                                                        }
-                                                        else if (data.plastseizure=="01.01.2010") {
-                                                            return "Rest a little";
-                                                        }
-                                                        else if (data.plastseizure!="01.01.2010") {
-                                                            return "Take NSAID (Pain reliever)";
-                                                        }
-                                                    }
-                                                    else if (data.hourswithproblem <= 31) {
-                                                        if (data.pcognitiveimpairement == null) {
-                                                            return "Take NSAID (Pain reliever)";
-                                                        }
-                                                        else if (data.pcognitiveimpairement=="none") {
-                                                            return "Take NSAID (Pain reliever)";
-                                                        }
-                                                        else if (data.pcognitiveimpairement!="none") {
-                                                            return "Drink tea";
-                                                        }
-                                                    }
-                                                }
-                                            }
-                                        }
-                                        else if (data.phasepilepsy=="1") {
-                                            if (data.hourswithproblem > 38) {
-                                                return "Take NSAID (Pain reliever)";
-                                            }
-                                            else if (data.hourswithproblem <= 38) {
-                                                return "Take Aspirin";
                                             }
                                         }
                                     }
-                                    else if (data.hourswithproblem <= 6) {
-                                        if (data.pbmi == null) {
+                                    else if (data.pbmi <= 18) {
+                                        if (data.phasosteoporosis == null) {
                                             return "Take NSAID (Pain reliever)";
                                         }
-                                        else if (data.pbmi > 19) {
-                                            if (data.pweight > 89) {
-                                                if (data.pallergies == null) {
+                                        else if (data.phasosteoporosis=="0") {
+                                            if (data.pgender == null) {
+                                                return "Take NSAID (Pain reliever)";
+                                            }
+                                            else if (data.pgender=="f") {
+                                                if (data.pheartdisease=="none") {
                                                     return "Take NSAID (Pain reliever)";
                                                 }
-                                                else if (data.pallergies=="none") {
+                                                else if (data.pheartdisease!="none") {
                                                     return "Take acid reducer";
                                                 }
-                                                else if (data.pallergies!="none") {
-                                                    return "Take NSAID (Pain reliever)";
-                                                }
                                             }
-                                            else if (data.pweight <= 89) {
-                                                if (data.pweight > 71) {
-                                                    if (data.pweight > 85) {
+                                            else if (data.pgender=="m") {
+                                                if (data.plastheartevent == null) {
+                                                    return "Take Aspirin";
+                                                }
+                                                else if (data.plastheartevent=="01.01.2015") {
+                                                    return "Take acid reducer";
+                                                }
+                                                else if (data.plastheartevent!="01.01.2015") {
+                                                    if (data.prespiratorydisease == null) {
                                                         return "Take Aspirin";
                                                     }
-                                                    else if (data.pweight <= 85) {
-                                                        return "Have a cold bath";
+                                                    else if (data.prespiratorydisease=="none") {
+                                                        return "Take Aspirin";
                                                     }
-                                                }
-                                                else if (data.pweight <= 71) {
-                                                    return "Drink tea";
+                                                    else if (data.prespiratorydisease!="none") {
+                                                        return "Take NSAID (Pain reliever)";
+                                                    }
                                                 }
                                             }
                                         }
-                                        else if (data.pbmi <= 19) {
-                                            if (data.pweight > 90) {
-                                                return "Eat fruit";
-                                            }
-                                            else if (data.pweight <= 90) {
+                                        else if (data.phasosteoporosis=="1") {
+                                            if (data.pcurrentprescriptions == null) {
                                                 return "Take NSAID (Pain reliever)";
+                                            }
+                                            else if (data.pcurrentprescriptions=="Zostrol & Prinivil (Lisinopril)") {
+                                                if (data.plastseizure == null) {
+                                                    return "Take NSAID (Pain reliever)";
+                                                }
+                                                else if (data.plastseizure=="00.00.0000") {
+                                                    return "Take NSAID (Pain reliever)";
+                                                }
+                                                else if (data.plastseizure!="00.00.0000") {
+                                                    return "Rest a little";
+                                                }
+                                            }
+                                            else if (data.pcurrentprescriptions!="Zostrol & Prinivil (Lisinopril)") {
+                                                if (data.phashighbloodpressure == null) {
+                                                    return "Take NSAID (Pain reliever)";
+                                                }
+                                                else if (data.phashighbloodpressure=="0") {
+                                                    if (data.pmentalillness == null) {
+                                                        return "Take Aspirin";
+                                                    }
+                                                    else if (data.pmentalillness=="Major Depression") {
+                                                        return "Have a cold bath";
+                                                    }
+                                                    else if (data.pmentalillness!="Major Depression") {
+                                                        return "Take Aspirin";
+                                                    }
+                                                }
+                                                else if (data.phashighbloodpressure=="1") {
+                                                    return "Take NSAID (Pain reliever)";
+                                                }
                                             }
                                         }
                                     }
@@ -688,153 +717,585 @@ function predictBestsolution(data) {
                     }
                 }
                 else if (data.pbloodtype!="O") {
-                    if (data.hourswithproblem == null) {
+                    if (data.plastheartevent == null) {
                         return "Take acid reducer";
                     }
-                    else if (data.hourswithproblem > 36) {
+                    else if (data.plastheartevent=="01.01.2015") {
                         if (data.pbmi == null) {
-                            return "Take acid reducer";
+                            return "Have a cold bath";
                         }
-                        else if (data.pbmi > 18) {
-                            if (data.pheartdisease == null) {
+                        else if (data.pbmi > 27) {
+                            if (data.phashighbloodpressure == null) {
+                                return "Take NSAID (Pain reliever)";
+                            }
+                            else if (data.phashighbloodpressure=="0") {
+                                return "Take NSAID (Pain reliever)";
+                            }
+                            else if (data.phashighbloodpressure=="1") {
+                                return "Take Aspirin";
+                            }
+                        }
+                        else if (data.pbmi <= 27) {
+                            if (data.pbmi > 24) {
                                 return "Take acid reducer";
                             }
-                            else if (data.pheartdisease=="Cardiomyopathy") {
-                                if (data.page > 93) {
-                                    if (data.page > 99) {
-                                        return "Take Aspirin";
+                            else if (data.pbmi <= 24) {
+                                return "Have a cold bath";
+                            }
+                        }
+                    }
+                    else if (data.plastheartevent!="01.01.2015") {
+                        if (data.page > 64) {
+                            if (data.pallergies == null) {
+                                return "Take acid reducer";
+                            }
+                            else if (data.pallergies=="Soy") {
+                                if (data.pweight > 71) {
+                                    if (data.psmokes == null) {
+                                        return "Take NSAID (Pain reliever)";
                                     }
-                                    else if (data.page <= 99) {
-                                        return "Take muscle reliever";
+                                    else if (data.psmokes=="0") {
+                                        if (data.page > 71) {
+                                            if (data.currentproblem == null) {
+                                                return "Take NSAID (Pain reliever)";
+                                            }
+                                            else if (data.currentproblem=="Sour Throat") {
+                                                return "Take Aspirin";
+                                            }
+                                            else if (data.currentproblem!="Sour Throat") {
+                                                return "Take NSAID (Pain reliever)";
+                                            }
+                                        }
+                                        else if (data.page <= 71) {
+                                            return "Take acid reducer";
+                                        }
+                                    }
+                                    else if (data.psmokes=="1") {
+                                        if (data.pmentalillness == null) {
+                                            return "Call doctor immediately";
+                                        }
+                                        else if (data.pmentalillness=="Anxiety") {
+                                            return "Eat hot mushroom soup";
+                                        }
+                                        else if (data.pmentalillness!="Anxiety") {
+                                            if (data.pheartdisease == null) {
+                                                return "Call doctor immediately";
+                                            }
+                                            else if (data.pheartdisease=="none") {
+                                                if (data.phashypertension == null) {
+                                                    return "Call doctor immediately";
+                                                }
+                                                else if (data.phashypertension=="0") {
+                                                    return "Call doctor immediately";
+                                                }
+                                                else if (data.phashypertension=="1") {
+                                                    return "Drink tea";
+                                                }
+                                            }
+                                            else if (data.pheartdisease!="none") {
+                                                return "Take acid reducer";
+                                            }
+                                        }
                                     }
                                 }
-                                else if (data.page <= 93) {
-                                    if (data.hourswithproblem > 64) {
-                                        return "Eat fruit";
+                                else if (data.pweight <= 71) {
+                                    if (data.pweight > 63) {
+                                        return "Take Aspirin";
                                     }
-                                    else if (data.hourswithproblem <= 64) {
-                                        return "Drink tea";
+                                    else if (data.pweight <= 63) {
+                                        return "Take acid reducer";
                                     }
                                 }
                             }
-                            else if (data.pheartdisease!="Cardiomyopathy") {
-                                if (data.psmokes == null) {
-                                    return "Take acid reducer";
+                            else if (data.pallergies!="Soy") {
+                                if (data.pbmi == null) {
+                                    return "Take NSAID (Pain reliever)";
                                 }
-                                else if (data.psmokes=="0") {
-                                    if (data.pheartdisease=="none") {
-                                        if (data.pmentalillness == null) {
-                                            return "Take NSAID (Pain reliever)";
+                                else if (data.pbmi > 28) {
+                                    if (data.phashypertension == null) {
+                                        return "Eat fruit";
+                                    }
+                                    else if (data.phashypertension=="0") {
+                                        if (data.page > 112) {
+                                            return "Drink tea";
                                         }
-                                        else if (data.pmentalillness=="Anxiety") {
-                                            if (data.phashighbloodpressure == null) {
-                                                return "Take NSAID (Pain reliever)";
-                                            }
-                                            else if (data.phashighbloodpressure=="0") {
-                                                if (data.hourswithproblem > 66) {
-                                                    if (data.pgender == null) {
-                                                        return "Drink tea";
-                                                    }
-                                                    else if (data.pgender=="f") {
-                                                        return "Have a cold bath";
-                                                    }
-                                                    else if (data.pgender=="m") {
-                                                        return "Drink tea";
-                                                    }
+                                        else if (data.page <= 112) {
+                                            if (data.page > 82) {
+                                                if (data.currentproblem == null) {
+                                                    return "Eat fruit";
                                                 }
-                                                else if (data.hourswithproblem <= 66) {
-                                                    if (data.plasthospitalization == null) {
-                                                        return "Take NSAID (Pain reliever)";
-                                                    }
-                                                    else if (data.plasthospitalization=="00.00.0000") {
-                                                        return "Take NSAID (Pain reliever)";
-                                                    }
-                                                    else if (data.plasthospitalization!="00.00.0000") {
-                                                        return "Drink tea";
-                                                    }
+                                                else if (data.currentproblem=="Heartburn") {
+                                                    return "Call doctor immediately";
                                                 }
-                                            }
-                                            else if (data.phashighbloodpressure=="1") {
-                                                return "Take Aspirin";
-                                            }
-                                        }
-                                        else if (data.pmentalillness!="Anxiety") {
-                                            if (data.phashighbloodpressure == null) {
-                                                return "Take NSAID (Pain reliever)";
-                                            }
-                                            else if (data.phashighbloodpressure=="0") {
-                                                if (data.pweight > 81) {
-                                                    if (data.currentproblem == null) {
-                                                        return "Take NSAID (Pain reliever)";
-                                                    }
-                                                    else if (data.currentproblem=="Back Pain") {
-                                                        if (data.page > 85) {
-                                                            return "Drink tea";
-                                                        }
-                                                        else if (data.page <= 85) {
-                                                            return "Take acid reducer";
-                                                        }
-                                                    }
-                                                    else if (data.currentproblem!="Back Pain") {
-                                                        if (data.pallergies == null) {
-                                                            return "Take NSAID (Pain reliever)";
-                                                        }
-                                                        else if (data.pallergies=="none") {
-                                                            if (data.hourswithproblem > 77) {
-                                                                return "Do some exercise (cardio)";
+                                                else if (data.currentproblem!="Heartburn") {
+                                                    if (data.page > 97) {
+                                                        if (data.page > 103) {
+                                                            if (data.pweight > 96) {
+                                                                return "Take NSAID (Pain reliever)";
                                                             }
-                                                            else if (data.hourswithproblem <= 77) {
+                                                            else if (data.pweight <= 96) {
+                                                                return "Eat fruit";
+                                                            }
+                                                        }
+                                                        else if (data.page <= 103) {
+                                                            if (data.pbloodtype=="A") {
+                                                                return "Take acid reducer";
+                                                            }
+                                                            else if (data.pbloodtype!="A") {
                                                                 return "Take NSAID (Pain reliever)";
                                                             }
                                                         }
-                                                        else if (data.pallergies!="none") {
-                                                            if (data.page > 76) {
+                                                    }
+                                                    else if (data.page <= 97) {
+                                                        if (data.phasosteoporosis == null) {
+                                                            return "Take acid reducer";
+                                                        }
+                                                        else if (data.phasosteoporosis=="0") {
+                                                            if (data.pmentalillness == null) {
+                                                                return "Take Aspirin";
+                                                            }
+                                                            else if (data.pmentalillness=="none") {
+                                                                return "Call doctor immediately";
+                                                            }
+                                                            else if (data.pmentalillness!="none") {
+                                                                return "Take Aspirin";
+                                                            }
+                                                        }
+                                                        else if (data.phasosteoporosis=="1") {
+                                                            return "Take acid reducer";
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                            else if (data.page <= 82) {
+                                                if (data.page > 77) {
+                                                    if (data.phashighbloodpressure == null) {
+                                                        return "Take acid reducer";
+                                                    }
+                                                    else if (data.phashighbloodpressure=="0") {
+                                                        if (data.pallergies=="Fish") {
+                                                            return "Do some exercise (cardio)";
+                                                        }
+                                                        else if (data.pallergies!="Fish") {
+                                                            return "Take acid reducer";
+                                                        }
+                                                    }
+                                                    else if (data.phashighbloodpressure=="1") {
+                                                        return "Do some exercise (cardio)";
+                                                    }
+                                                }
+                                                else if (data.page <= 77) {
+                                                    if (data.currentproblem == null) {
+                                                        return "Take NSAID (Pain reliever)";
+                                                    }
+                                                    else if (data.currentproblem=="Headache") {
+                                                        return "Take NSAID (Pain reliever)";
+                                                    }
+                                                    else if (data.currentproblem!="Headache") {
+                                                        if (data.pweight > 73) {
+                                                            return "Eat fruit";
+                                                        }
+                                                        else if (data.pweight <= 73) {
+                                                            return "Take acid reducer";
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                    else if (data.phashypertension=="1") {
+                                        if (data.page > 100) {
+                                            return "Take Aspirin";
+                                        }
+                                        else if (data.page <= 100) {
+                                            if (data.psmokes == null) {
+                                                return "Eat fruit";
+                                            }
+                                            else if (data.psmokes=="0") {
+                                                if (data.plastseizure == null) {
+                                                    return "Eat hot mushroom soup";
+                                                }
+                                                else if (data.plastseizure=="00.00.0000") {
+                                                    if (data.pweight > 90) {
+                                                        return "Take Aspirin";
+                                                    }
+                                                    else if (data.pweight <= 90) {
+                                                        if (data.currentproblem == null) {
+                                                            return "Eat hot mushroom soup";
+                                                        }
+                                                        else if (data.currentproblem=="Migrane") {
+                                                            return "Take acid reducer";
+                                                        }
+                                                        else if (data.currentproblem!="Migrane") {
+                                                            return "Eat hot mushroom soup";
+                                                        }
+                                                    }
+                                                }
+                                                else if (data.plastseizure!="00.00.0000") {
+                                                    return "Drink tea";
+                                                }
+                                            }
+                                            else if (data.psmokes=="1") {
+                                                if (data.page > 75) {
+                                                    return "Eat fruit";
+                                                }
+                                                else if (data.page <= 75) {
+                                                    return "Call doctor immediately";
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                                else if (data.pbmi <= 28) {
+                                    if (data.phashypertension == null) {
+                                        return "Take NSAID (Pain reliever)";
+                                    }
+                                    else if (data.phashypertension=="0") {
+                                        if (data.currentproblem == null) {
+                                            return "Take NSAID (Pain reliever)";
+                                        }
+                                        else if (data.currentproblem=="Migrane") {
+                                            if (data.pmentalillness == null) {
+                                                return "Take Aspirin";
+                                            }
+                                            else if (data.pmentalillness=="Anxiety") {
+                                                if (data.pbmi > 25) {
+                                                    return "Drink tea";
+                                                }
+                                                else if (data.pbmi <= 25) {
+                                                    return "Eat hot mushroom soup";
+                                                }
+                                            }
+                                            else if (data.pmentalillness!="Anxiety") {
+                                                if (data.pgender == null) {
+                                                    return "Take Aspirin";
+                                                }
+                                                else if (data.pgender=="f") {
+                                                    if (data.phasosteoporosis == null) {
+                                                        return "Take acid reducer";
+                                                    }
+                                                    else if (data.phasosteoporosis=="0") {
+                                                        return "Take NSAID (Pain reliever)";
+                                                    }
+                                                    else if (data.phasosteoporosis=="1") {
+                                                        return "Take acid reducer";
+                                                    }
+                                                }
+                                                else if (data.pgender=="m") {
+                                                    if (data.page > 68) {
+                                                        if (data.pweight > 92) {
+                                                            return "Take Aspirin";
+                                                        }
+                                                        else if (data.pweight <= 92) {
+                                                            if (data.pheartdisease == null) {
+                                                                return "Drink tea";
+                                                            }
+                                                            else if (data.pheartdisease=="none") {
+                                                                return "Drink tea";
+                                                            }
+                                                            else if (data.pheartdisease!="none") {
+                                                                return "Have a cold bath";
+                                                            }
+                                                        }
+                                                    }
+                                                    else if (data.page <= 68) {
+                                                        return "Take NSAID (Pain reliever)";
+                                                    }
+                                                }
+                                            }
+                                        }
+                                        else if (data.currentproblem!="Migrane") {
+                                            if (data.currentproblem=="Headache") {
+                                                if (data.pweight > 92) {
+                                                    if (data.page > 99) {
+                                                        return "Do some exercise (cardio)";
+                                                    }
+                                                    else if (data.page <= 99) {
+                                                        if (data.pgender == null) {
+                                                            return "Drink tea";
+                                                        }
+                                                        else if (data.pgender=="f") {
+                                                            return "Drink tea";
+                                                        }
+                                                        else if (data.pgender=="m") {
+                                                            return "Take acid reducer";
+                                                        }
+                                                    }
+                                                }
+                                                else if (data.pweight <= 92) {
+                                                    if (data.pcurrentprescriptions == null) {
+                                                        return "Take acid reducer";
+                                                    }
+                                                    else if (data.pcurrentprescriptions=="Zostrol & Prinivil (Lisinopril)") {
+                                                        return "Eat hot mushroom soup";
+                                                    }
+                                                    else if (data.pcurrentprescriptions!="Zostrol & Prinivil (Lisinopril)") {
+                                                        if (data.pweight > 76) {
+                                                            if (data.phashighbloodpressure == null) {
+                                                                return "Take Aspirin";
+                                                            }
+                                                            else if (data.phashighbloodpressure=="0") {
+                                                                return "Take NSAID (Pain reliever)";
+                                                            }
+                                                            else if (data.phashighbloodpressure=="1") {
+                                                                return "Do some exercise (cardio)";
+                                                            }
+                                                        }
+                                                        else if (data.pweight <= 76) {
+                                                            if (data.pbloodtype=="B") {
+                                                                return "Eat fruit";
+                                                            }
+                                                            else if (data.pbloodtype!="B") {
                                                                 return "Take acid reducer";
                                                             }
-                                                            else if (data.page <= 76) {
-                                                                if (data.hourswithproblem > 56) {
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                            else if (data.currentproblem!="Headache") {
+                                                if (data.pweight > 98) {
+                                                    if (data.pcurrentprescriptions == null) {
+                                                        return "Take NSAID (Pain reliever)";
+                                                    }
+                                                    else if (data.pcurrentprescriptions=="none") {
+                                                        if (data.pallergies=="none") {
+                                                            return "Take acid reducer";
+                                                        }
+                                                        else if (data.pallergies!="none") {
+                                                            if (data.page > 84) {
+                                                                return "Drink tea";
+                                                            }
+                                                            else if (data.page <= 84) {
+                                                                return "Eat hot mushroom soup";
+                                                            }
+                                                        }
+                                                    }
+                                                    else if (data.pcurrentprescriptions!="none") {
+                                                        if (data.psmokes == null) {
+                                                            return "Take NSAID (Pain reliever)";
+                                                        }
+                                                        else if (data.psmokes=="0") {
+                                                            return "Take NSAID (Pain reliever)";
+                                                        }
+                                                        else if (data.psmokes=="1") {
+                                                            if (data.pgender == null) {
+                                                                return "Eat hot mushroom soup";
+                                                            }
+                                                            else if (data.pgender=="f") {
+                                                                return "Eat hot mushroom soup";
+                                                            }
+                                                            else if (data.pgender=="m") {
+                                                                return "Take NSAID (Pain reliever)";
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                                else if (data.pweight <= 98) {
+                                                    if (data.pcurrentprescriptions == null) {
+                                                        return "Take NSAID (Pain reliever)";
+                                                    }
+                                                    else if (data.pcurrentprescriptions=="Hydrocodone-Acetaminophen") {
+                                                        if (data.pheartdisease == null) {
+                                                            return "Take NSAID (Pain reliever)";
+                                                        }
+                                                        else if (data.pheartdisease=="none") {
+                                                            if (data.pweight > 65) {
+                                                                if (data.pmentalillness == null) {
+                                                                    return "Take Aspirin";
+                                                                }
+                                                                else if (data.pmentalillness=="Anxiety") {
+                                                                    return "Eat fruit";
+                                                                }
+                                                                else if (data.pmentalillness!="Anxiety") {
+                                                                    if (data.pallergies=="Fish") {
+                                                                        return "Take Aspirin";
+                                                                    }
+                                                                    else if (data.pallergies!="Fish") {
+                                                                        if (data.plastheartevent=="00.00.0000") {
+                                                                            return "Take Aspirin";
+                                                                        }
+                                                                        else if (data.plastheartevent!="00.00.0000") {
+                                                                            return "Take NSAID (Pain reliever)";
+                                                                        }
+                                                                    }
+                                                                }
+                                                            }
+                                                            else if (data.pweight <= 65) {
+                                                                return "Eat fruit";
+                                                            }
+                                                        }
+                                                        else if (data.pheartdisease!="none") {
+                                                            return "Take NSAID (Pain reliever)";
+                                                        }
+                                                    }
+                                                    else if (data.pcurrentprescriptions!="Hydrocodone-Acetaminophen") {
+                                                        if (data.psmokes == null) {
+                                                            return "Take NSAID (Pain reliever)";
+                                                        }
+                                                        else if (data.psmokes=="0") {
+                                                            if (data.pweight > 71) {
+                                                                if (data.phasosteoporosis == null) {
+                                                                    return "Do some exercise (cardio)";
+                                                                }
+                                                                else if (data.phasosteoporosis=="0") {
+                                                                    if (data.pallergies=="none") {
+                                                                        return "Eat hot mushroom soup";
+                                                                    }
+                                                                    else if (data.pallergies!="none") {
+                                                                        return "Take Aspirin";
+                                                                    }
+                                                                }
+                                                                else if (data.phasosteoporosis=="1") {
+                                                                    if (data.prespiratorydisease == null) {
+                                                                        return "Call doctor immediately";
+                                                                    }
+                                                                    else if (data.prespiratorydisease=="none") {
+                                                                        return "Call doctor immediately";
+                                                                    }
+                                                                    else if (data.prespiratorydisease!="none") {
+                                                                        return "Drink tea";
+                                                                    }
+                                                                }
+                                                            }
+                                                            else if (data.pweight <= 71) {
+                                                                if (data.pmentalillness == null) {
                                                                     return "Take NSAID (Pain reliever)";
                                                                 }
-                                                                else if (data.hourswithproblem <= 56) {
-                                                                    return "Eat fruit";
+                                                                else if (data.pmentalillness=="none") {
+                                                                    if (data.pweight > 63) {
+                                                                        return "Eat fruit";
+                                                                    }
+                                                                    else if (data.pweight <= 63) {
+                                                                        return "Take NSAID (Pain reliever)";
+                                                                    }
+                                                                }
+                                                                else if (data.pmentalillness!="none") {
+                                                                    return "Take Aspirin";
+                                                                }
+                                                            }
+                                                        }
+                                                        else if (data.psmokes=="1") {
+                                                            if (data.pweight > 62) {
+                                                                if (data.page > 108) {
+                                                                    return "Take Aspirin";
+                                                                }
+                                                                else if (data.page <= 108) {
+                                                                    if (data.pallergies=="Wheat") {
+                                                                        return "Take NSAID (Pain reliever)";
+                                                                    }
+                                                                    else if (data.pallergies!="Wheat") {
+                                                                        if (data.pmentalillness == null) {
+                                                                            return "Take NSAID (Pain reliever)";
+                                                                        }
+                                                                        else if (data.pmentalillness=="none") {
+                                                                            if (data.pweight > 81) {
+                                                                                return "Take NSAID (Pain reliever)";
+                                                                            }
+                                                                            else if (data.pweight <= 81) {
+                                                                                return "Eat fruit";
+                                                                            }
+                                                                        }
+                                                                        else if (data.pmentalillness!="none") {
+                                                                            return "Take acid reducer";
+                                                                        }
+                                                                    }
+                                                                }
+                                                            }
+                                                            else if (data.pweight <= 62) {
+                                                                if (data.prespiratorydisease == null) {
+                                                                    return "Take acid reducer";
+                                                                }
+                                                                else if (data.prespiratorydisease=="none") {
+                                                                    return "Take acid reducer";
+                                                                }
+                                                                else if (data.prespiratorydisease!="none") {
+                                                                    return "Eat hot mushroom soup";
                                                                 }
                                                             }
                                                         }
                                                     }
                                                 }
-                                                else if (data.pweight <= 81) {
+                                            }
+                                        }
+                                    }
+                                    else if (data.phashypertension=="1") {
+                                        if (data.phashighbloodpressure == null) {
+                                            return "Take NSAID (Pain reliever)";
+                                        }
+                                        else if (data.phashighbloodpressure=="0") {
+                                            if (data.pcurrentprescriptions == null) {
+                                                return "Take NSAID (Pain reliever)";
+                                            }
+                                            else if (data.pcurrentprescriptions=="Hydrocodone-Acetaminophen") {
+                                                if (data.pweight > 73) {
+                                                    if (data.pbloodtype=="A") {
+                                                        return "Take Aspirin";
+                                                    }
+                                                    else if (data.pbloodtype!="A") {
+                                                        return "Eat fruit";
+                                                    }
+                                                }
+                                                else if (data.pweight <= 73) {
+                                                    return "Call doctor immediately";
+                                                }
+                                            }
+                                            else if (data.pcurrentprescriptions!="Hydrocodone-Acetaminophen") {
+                                                if (data.page > 85) {
+                                                    if (data.pbloodtype=="AB") {
+                                                        return "Take Aspirin";
+                                                    }
+                                                    else if (data.pbloodtype!="AB") {
+                                                        if (data.pbmi > 25) {
+                                                            return "Eat fruit";
+                                                        }
+                                                        else if (data.pbmi <= 25) {
+                                                            if (data.page > 98) {
+                                                                if (data.page > 113) {
+                                                                    return "Take acid reducer";
+                                                                }
+                                                                else if (data.page <= 113) {
+                                                                    return "Take NSAID (Pain reliever)";
+                                                                }
+                                                            }
+                                                            else if (data.page <= 98) {
+                                                                if (data.phasosteoporosis == null) {
+                                                                    return "Take acid reducer";
+                                                                }
+                                                                else if (data.phasosteoporosis=="0") {
+                                                                    return "Take acid reducer";
+                                                                }
+                                                                else if (data.phasosteoporosis=="1") {
+                                                                    return "Take muscle reliever";
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                                else if (data.page <= 85) {
                                                     if (data.currentproblem == null) {
                                                         return "Eat fruit";
                                                     }
-                                                    else if (data.currentproblem=="Migrane") {
-                                                        if (data.pcurrentprescriptions == null) {
-                                                            return "Take NSAID (Pain reliever)";
-                                                        }
-                                                        else if (data.pcurrentprescriptions=="none") {
-                                                            return "Take NSAID (Pain reliever)";
-                                                        }
-                                                        else if (data.pcurrentprescriptions!="none") {
-                                                            return "Drink tea";
-                                                        }
+                                                    else if (data.currentproblem=="Cold") {
+                                                        return "Call doctor immediately";
                                                     }
-                                                    else if (data.currentproblem!="Migrane") {
-                                                        if (data.currentproblem=="Headache") {
-                                                            return "Take acid reducer";
+                                                    else if (data.currentproblem!="Cold") {
+                                                        if (data.pmentalillness == null) {
+                                                            return "Eat fruit";
                                                         }
-                                                        else if (data.currentproblem!="Headache") {
-                                                            if (data.prespiratorydisease == null) {
+                                                        else if (data.pmentalillness=="none") {
+                                                            if (data.pbloodtype=="A") {
                                                                 return "Eat fruit";
                                                             }
+                                                            else if (data.pbloodtype!="A") {
+                                                                return "Take NSAID (Pain reliever)";
+                                                            }
+                                                        }
+                                                        else if (data.pmentalillness!="none") {
+                                                            if (data.prespiratorydisease == null) {
+                                                                return "Drink tea";
+                                                            }
                                                             else if (data.prespiratorydisease=="none") {
-                                                                if (data.pcurrentprescriptions == null) {
-                                                                    return "Eat fruit";
-                                                                }
-                                                                else if (data.pcurrentprescriptions=="none") {
-                                                                    return "Eat fruit";
-                                                                }
-                                                                else if (data.pcurrentprescriptions!="none") {
-                                                                    return "Eat fruit";
-                                                                }
+                                                                return "Drink tea";
                                                             }
                                                             else if (data.prespiratorydisease!="none") {
                                                                 return "Take NSAID (Pain reliever)";
@@ -843,438 +1304,61 @@ function predictBestsolution(data) {
                                                     }
                                                 }
                                             }
-                                            else if (data.phashighbloodpressure=="1") {
-                                                if (data.pweight > 66) {
-                                                    if (data.pbmi > 23) {
-                                                        if (data.pweight > 98) {
-                                                            return "Drink tea";
-                                                        }
-                                                        else if (data.pweight <= 98) {
-                                                            if (data.pbloodtype=="AB") {
-                                                                return "Take NSAID (Pain reliever)";
-                                                            }
-                                                            else if (data.pbloodtype!="AB") {
-                                                                if (data.page > 61) {
-                                                                    if (data.currentproblem == null) {
-                                                                        return "Take Aspirin";
-                                                                    }
-                                                                    else if (data.currentproblem=="Sour Throat") {
-                                                                        return "Do some exercise (cardio)";
-                                                                    }
-                                                                    else if (data.currentproblem!="Sour Throat") {
-                                                                        return "Take Aspirin";
-                                                                    }
-                                                                }
-                                                                else if (data.page <= 61) {
-                                                                    return "Have a cold bath";
-                                                                }
-                                                            }
-                                                        }
-                                                    }
-                                                    else if (data.pbmi <= 23) {
-                                                        if (data.page > 73) {
-                                                            return "Do some exercise (cardio)";
-                                                        }
-                                                        else if (data.page <= 73) {
-                                                            return "Take NSAID (Pain reliever)";
-                                                        }
-                                                    }
-                                                }
-                                                else if (data.pweight <= 66) {
-                                                    if (data.hourswithproblem > 86) {
-                                                        return "Take Aspirin";
-                                                    }
-                                                    else if (data.hourswithproblem <= 86) {
-                                                        if (data.pbmi > 27) {
-                                                            return "Take NSAID (Pain reliever)";
-                                                        }
-                                                        else if (data.pbmi <= 27) {
-                                                            return "Take acid reducer";
-                                                        }
-                                                    }
-                                                }
-                                            }
                                         }
-                                    }
-                                    else if (data.pheartdisease!="none") {
-                                        if (data.page > 99) {
-                                            if (data.pcurrentprescriptions == null) {
-                                                return "Do some exercise (cardio)";
-                                            }
-                                            else if (data.pcurrentprescriptions=="none") {
-                                                return "Take acid reducer";
-                                            }
-                                            else if (data.pcurrentprescriptions!="none") {
-                                                return "Do some exercise (cardio)";
-                                            }
-                                        }
-                                        else if (data.page <= 99) {
-                                            if (data.pheartdisease=="Cardiovascular Disea") {
-                                                if (data.pallergies == null) {
-                                                    return "Take NSAID (Pain reliever)";
-                                                }
-                                                else if (data.pallergies=="Peanuts") {
-                                                    return "Call doctor immediately";
-                                                }
-                                                else if (data.pallergies!="Peanuts") {
-                                                    if (data.pcurrentprescriptions == null) {
-                                                        return "Take NSAID (Pain reliever)";
-                                                    }
-                                                    else if (data.pcurrentprescriptions=="Zocor-Simvastatin") {
-                                                        return "Drink tea";
-                                                    }
-                                                    else if (data.pcurrentprescriptions!="Zocor-Simvastatin") {
-                                                        return "Take NSAID (Pain reliever)";
-                                                    }
-                                                }
-                                            }
-                                            else if (data.pheartdisease!="Cardiovascular Disea") {
-                                                return "Take acid reducer";
-                                            }
-                                        }
-                                    }
-                                }
-                                else if (data.psmokes=="1") {
-                                    if (data.page > 77) {
-                                        if (data.pallergies == null) {
-                                            return "Take acid reducer";
-                                        }
-                                        else if (data.pallergies=="none") {
-                                            if (data.pbmi > 23) {
-                                                if (data.pweight > 59) {
-                                                    if (data.page > 111) {
-                                                        return "Call doctor immediately";
-                                                    }
-                                                    else if (data.page <= 111) {
-                                                        if (data.hourswithproblem > 71) {
-                                                            return "Eat fruit";
-                                                        }
-                                                        else if (data.hourswithproblem <= 71) {
-                                                            return "Take acid reducer";
-                                                        }
-                                                    }
-                                                }
-                                                else if (data.pweight <= 59) {
+                                        else if (data.phashighbloodpressure=="1") {
+                                            if (data.pweight > 81) {
+                                                if (data.page > 99) {
                                                     return "Take Aspirin";
                                                 }
-                                            }
-                                            else if (data.pbmi <= 23) {
-                                                if (data.pgender == null) {
-                                                    return "Drink tea";
-                                                }
-                                                else if (data.pgender=="f") {
-                                                    if (data.pcognitiveimpairement == null) {
-                                                        return "Drink tea";
-                                                    }
-                                                    else if (data.pcognitiveimpairement=="none") {
-                                                        return "Drink tea";
-                                                    }
-                                                    else if (data.pcognitiveimpairement!="none") {
-                                                        return "Eat hot mushroom soup";
-                                                    }
-                                                }
-                                                else if (data.pgender=="m") {
-                                                    return "Take acid reducer";
-                                                }
-                                            }
-                                        }
-                                        else if (data.pallergies!="none") {
-                                            if (data.page > 82) {
-                                                if (data.pweight > 89) {
-                                                    if (data.hourswithproblem > 71) {
-                                                        if (data.currentproblem == null) {
-                                                            return "Take NSAID (Pain reliever)";
-                                                        }
-                                                        else if (data.currentproblem=="Sour Throat") {
-                                                            return "Eat fruit";
-                                                        }
-                                                        else if (data.currentproblem!="Sour Throat") {
-                                                            return "Take NSAID (Pain reliever)";
-                                                        }
-                                                    }
-                                                    else if (data.hourswithproblem <= 71) {
-                                                        if (data.pbmi > 21) {
-                                                            return "Take muscle reliever";
-                                                        }
-                                                        else if (data.pbmi <= 21) {
-                                                            return "Take Aspirin";
-                                                        }
-                                                    }
-                                                }
-                                                else if (data.pweight <= 89) {
-                                                    if (data.phashypertension == null) {
-                                                        return "Take Aspirin";
-                                                    }
-                                                    else if (data.phashypertension=="0") {
-                                                        if (data.pbmi > 26) {
-                                                            if (data.pbmi > 31) {
-                                                                return "Take acid reducer";
-                                                            }
-                                                            else if (data.pbmi <= 31) {
-                                                                return "Take Aspirin";
-                                                            }
-                                                        }
-                                                        else if (data.pbmi <= 26) {
-                                                            if (data.hourswithproblem > 58) {
-                                                                return "Take acid reducer";
-                                                            }
-                                                            else if (data.hourswithproblem <= 58) {
-                                                                return "Eat fruit";
-                                                            }
-                                                        }
-                                                    }
-                                                    else if (data.phashypertension=="1") {
-                                                        if (data.hourswithproblem > 60) {
-                                                            return "Take NSAID (Pain reliever)";
-                                                        }
-                                                        else if (data.hourswithproblem <= 60) {
-                                                            return "Take Aspirin";
-                                                        }
-                                                    }
-                                                }
-                                            }
-                                            else if (data.page <= 82) {
-                                                if (data.pallergies=="Soy") {
-                                                    return "Take acid reducer";
-                                                }
-                                                else if (data.pallergies!="Soy") {
-                                                    return "Do some exercise (cardio)";
-                                                }
-                                            }
-                                        }
-                                    }
-                                    else if (data.page <= 77) {
-                                        if (data.pbloodtype=="A") {
-                                            if (data.page > 65) {
-                                                if (data.pmentalillness == null) {
-                                                    return "Eat fruit";
-                                                }
-                                                else if (data.pmentalillness=="none") {
-                                                    if (data.pbmi > 26) {
+                                                else if (data.page <= 99) {
+                                                    if (data.phasosteoporosis == null) {
                                                         return "Eat fruit";
                                                     }
-                                                    else if (data.pbmi <= 26) {
-                                                        return "Call doctor immediately";
+                                                    else if (data.phasosteoporosis=="0") {
+                                                        return "Eat fruit";
                                                     }
-                                                }
-                                                else if (data.pmentalillness!="none") {
-                                                    return "Eat hot mushroom soup";
-                                                }
-                                            }
-                                            else if (data.page <= 65) {
-                                                if (data.pallergies == null) {
-                                                    return "Take NSAID (Pain reliever)";
-                                                }
-                                                else if (data.pallergies=="Peanuts") {
-                                                    return "Eat fruit";
-                                                }
-                                                else if (data.pallergies!="Peanuts") {
-                                                    if (data.pweight > 90) {
-                                                        return "Take acid reducer";
-                                                    }
-                                                    else if (data.pweight <= 90) {
-                                                        return "Take NSAID (Pain reliever)";
+                                                    else if (data.phasosteoporosis=="1") {
+                                                        if (data.psmokes == null) {
+                                                            return "Eat hot mushroom soup";
+                                                        }
+                                                        else if (data.psmokes=="0") {
+                                                            return "Take muscle reliever";
+                                                        }
+                                                        else if (data.psmokes=="1") {
+                                                            return "Eat hot mushroom soup";
+                                                        }
                                                     }
                                                 }
                                             }
-                                        }
-                                        else if (data.pbloodtype!="A") {
-                                            if (data.phasosteoporosis == null) {
-                                                return "Take acid reducer";
-                                            }
-                                            else if (data.phasosteoporosis=="0") {
-                                                return "Have a cold bath";
-                                            }
-                                            else if (data.phasosteoporosis=="1") {
-                                                return "Take acid reducer";
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                        else if (data.pbmi <= 18) {
-                            if (data.page > 75) {
-                                if (data.currentproblem == null) {
-                                    return "Take Aspirin";
-                                }
-                                else if (data.currentproblem=="Headache") {
-                                    return "Take acid reducer";
-                                }
-                                else if (data.currentproblem!="Headache") {
-                                    if (data.pweight > 102) {
-                                        return "Call doctor immediately";
-                                    }
-                                    else if (data.pweight <= 102) {
-                                        if (data.hourswithproblem > 51) {
-                                            if (data.pbloodtype=="A") {
-                                                return "Take Aspirin";
-                                            }
-                                            else if (data.pbloodtype!="A") {
-                                                return "Take NSAID (Pain reliever)";
-                                            }
-                                        }
-                                        else if (data.hourswithproblem <= 51) {
-                                            return "Call doctor immediately";
-                                        }
-                                    }
-                                }
-                            }
-                            else if (data.page <= 75) {
-                                if (data.psmokes == null) {
-                                    return "Take acid reducer";
-                                }
-                                else if (data.psmokes=="0") {
-                                    return "Eat fruit";
-                                }
-                                else if (data.psmokes=="1") {
-                                    return "Take acid reducer";
-                                }
-                            }
-                        }
-                    }
-                    else if (data.hourswithproblem <= 36) {
-                        if (data.plastheartevent == null) {
-                            return "Take NSAID (Pain reliever)";
-                        }
-                        else if (data.plastheartevent=="01.01.2015") {
-                            return "Have a cold bath";
-                        }
-                        else if (data.plastheartevent!="01.01.2015") {
-                            if (data.hourswithproblem > 16) {
-                                if (data.pweight > 105) {
-                                    if (data.phashypertension == null) {
-                                        return "Take acid reducer";
-                                    }
-                                    else if (data.phashypertension=="0") {
-                                        return "Take acid reducer";
-                                    }
-                                    else if (data.phashypertension=="1") {
-                                        return "Take Aspirin";
-                                    }
-                                }
-                                else if (data.pweight <= 105) {
-                                    if (data.pweight > 94) {
-                                        if (data.pallergies == null) {
-                                            return "Take NSAID (Pain reliever)";
-                                        }
-                                        else if (data.pallergies=="Peanuts") {
-                                            return "Eat hot mushroom soup";
-                                        }
-                                        else if (data.pallergies!="Peanuts") {
-                                            if (data.pgender == null) {
-                                                return "Take NSAID (Pain reliever)";
-                                            }
-                                            else if (data.pgender=="f") {
-                                                return "Take NSAID (Pain reliever)";
-                                            }
-                                            else if (data.pgender=="m") {
+                                            else if (data.pweight <= 81) {
                                                 if (data.pcurrentprescriptions == null) {
                                                     return "Take NSAID (Pain reliever)";
                                                 }
                                                 else if (data.pcurrentprescriptions=="none") {
-                                                    return "Drink tea";
-                                                }
-                                                else if (data.pcurrentprescriptions!="none") {
-                                                    return "Take NSAID (Pain reliever)";
-                                                }
-                                            }
-                                        }
-                                    }
-                                    else if (data.pweight <= 94) {
-                                        if (data.pallergies == null) {
-                                            return "Take NSAID (Pain reliever)";
-                                        }
-                                        else if (data.pallergies=="Fish") {
-                                            if (data.pbmi == null) {
-                                                return "Take NSAID (Pain reliever)";
-                                            }
-                                            else if (data.pbmi > 19) {
-                                                if (data.pbmi > 27) {
-                                                    return "Take acid reducer";
-                                                }
-                                                else if (data.pbmi <= 27) {
-                                                    return "Take NSAID (Pain reliever)";
-                                                }
-                                            }
-                                            else if (data.pbmi <= 19) {
-                                                return "Do some exercise (cardio)";
-                                            }
-                                        }
-                                        else if (data.pallergies!="Fish") {
-                                            if (data.hourswithproblem > 21) {
-                                                if (data.page > 74) {
-                                                    if (data.page > 88) {
-                                                        if (data.pmentalillness == null) {
-                                                            return "Take acid reducer";
-                                                        }
-                                                        else if (data.pmentalillness=="none") {
-                                                            if (data.currentproblem == null) {
-                                                                return "Take acid reducer";
-                                                            }
-                                                            else if (data.currentproblem=="Heartburn") {
-                                                                return "Take acid reducer";
-                                                            }
-                                                            else if (data.currentproblem!="Heartburn") {
-                                                                if (data.pbmi == null) {
-                                                                    return "Take acid reducer";
-                                                                }
-                                                                else if (data.pbmi > 26) {
-                                                                    return "Take Aspirin";
-                                                                }
-                                                                else if (data.pbmi <= 26) {
-                                                                    return "Take acid reducer";
-                                                                }
-                                                            }
-                                                        }
-                                                        else if (data.pmentalillness!="none") {
-                                                            return "Call doctor immediately";
-                                                        }
+                                                    if (data.pmentalillness == null) {
+                                                        return "Take Aspirin";
                                                     }
-                                                    else if (data.page <= 88) {
-                                                        if (data.phashypertension == null) {
-                                                            return "Eat hot mushroom soup";
-                                                        }
-                                                        else if (data.phashypertension=="0") {
-                                                            return "Call doctor immediately";
-                                                        }
-                                                        else if (data.phashypertension=="1") {
-                                                            return "Eat hot mushroom soup";
-                                                        }
-                                                    }
-                                                }
-                                                else if (data.page <= 74) {
-                                                    if (data.pweight > 83) {
-                                                        return "Take acid reducer";
-                                                    }
-                                                    else if (data.pweight <= 83) {
-                                                        if (data.pallergies=="none") {
-                                                            return "Take NSAID (Pain reliever)";
-                                                        }
-                                                        else if (data.pallergies!="none") {
-                                                            return "Do some exercise (cardio)";
-                                                        }
-                                                    }
-                                                }
-                                            }
-                                            else if (data.hourswithproblem <= 21) {
-                                                if (data.pallergies=="none") {
-                                                    if (data.psmokes == null) {
-                                                        return "Drink tea";
-                                                    }
-                                                    else if (data.psmokes=="0") {
+                                                    else if (data.pmentalillness=="Anxiety") {
                                                         return "Take NSAID (Pain reliever)";
                                                     }
-                                                    else if (data.psmokes=="1") {
-                                                        return "Drink tea";
+                                                    else if (data.pmentalillness!="Anxiety") {
+                                                        if (data.plasthospitalization == null) {
+                                                            return "Take Aspirin";
+                                                        }
+                                                        else if (data.plasthospitalization=="00.00.0000") {
+                                                            return "Take Aspirin";
+                                                        }
+                                                        else if (data.plasthospitalization!="00.00.0000") {
+                                                            return "Have a cold bath";
+                                                        }
                                                     }
                                                 }
-                                                else if (data.pallergies!="none") {
-                                                    if (data.page > 108) {
-                                                        return "Take acid reducer";
+                                                else if (data.pcurrentprescriptions!="none") {
+                                                    if (data.pbmi > 25) {
+                                                        return "Take NSAID (Pain reliever)";
                                                     }
-                                                    else if (data.page <= 108) {
-                                                        return "Eat fruit";
+                                                    else if (data.pbmi <= 25) {
+                                                        return "Drink tea";
                                                     }
                                                 }
                                             }
@@ -1282,97 +1366,74 @@ function predictBestsolution(data) {
                                     }
                                 }
                             }
-                            else if (data.hourswithproblem <= 16) {
+                        }
+                        else if (data.page <= 64) {
+                            if (data.pallergies == null) {
+                                return "Take NSAID (Pain reliever)";
+                            }
+                            else if (data.pallergies=="Fish") {
                                 if (data.pbmi == null) {
+                                    return "Take Aspirin";
+                                }
+                                else if (data.pbmi > 27) {
                                     return "Take acid reducer";
                                 }
-                                else if (data.pbmi > 19) {
-                                    if (data.page > 77) {
-                                        if (data.pbmi > 27) {
-                                            if (data.hourswithproblem > 4) {
-                                                if (data.pcurrentprescriptions == null) {
-                                                    return "Call doctor immediately";
-                                                }
-                                                else if (data.pcurrentprescriptions=="Hydrocodone-Acetaminophen") {
-                                                    return "Take acid reducer";
-                                                }
-                                                else if (data.pcurrentprescriptions!="Hydrocodone-Acetaminophen") {
-                                                    if (data.page > 88) {
-                                                        return "Call doctor immediately";
-                                                    }
-                                                    else if (data.page <= 88) {
-                                                        return "Drink tea";
-                                                    }
-                                                }
-                                            }
-                                            else if (data.hourswithproblem <= 4) {
-                                                if (data.phasosteoporosis == null) {
-                                                    return "Take Aspirin";
-                                                }
-                                                else if (data.phasosteoporosis=="0") {
-                                                    return "Eat fruit";
-                                                }
-                                                else if (data.phasosteoporosis=="1") {
-                                                    return "Drink tea";
-                                                }
-                                            }
-                                        }
-                                        else if (data.pbmi <= 27) {
-                                            if (data.page > 115) {
-                                                return "Take NSAID (Pain reliever)";
-                                            }
-                                            else if (data.page <= 115) {
-                                                if (data.pheartdisease == null) {
-                                                    return "Take Aspirin";
-                                                }
-                                                else if (data.pheartdisease=="none") {
-                                                    return "Take Aspirin";
-                                                }
-                                                else if (data.pheartdisease!="none") {
-                                                    return "Drink tea";
-                                                }
-                                            }
-                                        }
+                                else if (data.pbmi <= 27) {
+                                    return "Take Aspirin";
+                                }
+                            }
+                            else if (data.pallergies!="Fish") {
+                                if (data.pweight > 101) {
+                                    if (data.pmentalillness == null) {
+                                        return "Take acid reducer";
                                     }
-                                    else if (data.page <= 77) {
-                                        if (data.pallergies == null) {
-                                            return "Take acid reducer";
-                                        }
-                                        else if (data.pallergies=="none") {
-                                            if (data.pbmi > 27) {
-                                                return "Have a cold bath";
-                                            }
-                                            else if (data.pbmi <= 27) {
-                                                return "Take acid reducer";
-                                            }
-                                        }
-                                        else if (data.pallergies!="none") {
-                                            if (data.pbmi > 30) {
-                                                return "Take acid reducer";
-                                            }
-                                            else if (data.pbmi <= 30) {
-                                                return "Call doctor immediately";
-                                            }
-                                        }
+                                    else if (data.pmentalillness=="Major Depression") {
+                                        return "Do some exercise (cardio)";
+                                    }
+                                    else if (data.pmentalillness!="Major Depression") {
+                                        return "Take acid reducer";
                                     }
                                 }
-                                else if (data.pbmi <= 19) {
-                                    if (data.pgender == null) {
-                                        return "Eat hot mushroom soup";
-                                    }
-                                    else if (data.pgender=="f") {
-                                        if (data.phashighbloodpressure == null) {
+                                else if (data.pweight <= 101) {
+                                    if (data.pweight > 84) {
+                                        if (data.pcurrentprescriptions == null) {
                                             return "Take NSAID (Pain reliever)";
                                         }
-                                        else if (data.phashighbloodpressure=="0") {
-                                            return "Take NSAID (Pain reliever)";
+                                        else if (data.pcurrentprescriptions=="Hydrocodone-Acetaminophen") {
+                                            return "Take acid reducer";
                                         }
-                                        else if (data.phashighbloodpressure=="1") {
-                                            return "Drink tea";
+                                        else if (data.pcurrentprescriptions!="Hydrocodone-Acetaminophen") {
+                                            if (data.phashighbloodpressure == null) {
+                                                return "Take NSAID (Pain reliever)";
+                                            }
+                                            else if (data.phashighbloodpressure=="0") {
+                                                return "Take NSAID (Pain reliever)";
+                                            }
+                                            else if (data.phashighbloodpressure=="1") {
+                                                return "Have a cold bath";
+                                            }
                                         }
                                     }
-                                    else if (data.pgender=="m") {
-                                        return "Eat hot mushroom soup";
+                                    else if (data.pweight <= 84) {
+                                        if (data.page > 61) {
+                                            if (data.pdiabetestype == null) {
+                                                return "Eat fruit";
+                                            }
+                                            else if (data.pdiabetestype > 0) {
+                                                return "Have a cold bath";
+                                            }
+                                            else if (data.pdiabetestype <= 0) {
+                                                if (data.pallergies=="none") {
+                                                    return "Take acid reducer";
+                                                }
+                                                else if (data.pallergies!="none") {
+                                                    return "Take NSAID (Pain reliever)";
+                                                }
+                                            }
+                                        }
+                                        else if (data.page <= 61) {
+                                            return "Eat hot mushroom soup";
+                                        }
                                     }
                                 }
                             }
@@ -1393,129 +1454,130 @@ function predictBestsolution(data) {
                             return "Drink tea";
                         }
                         else if (data.pbmi > 26) {
-                            if (data.phashighbloodpressure == null) {
-                                return "Eat hot mushroom soup";
-                            }
-                            else if (data.phashighbloodpressure=="0") {
-                                return "Rest a little";
-                            }
-                            else if (data.phashighbloodpressure=="1") {
-                                return "Eat hot mushroom soup";
-                            }
+                            return "Eat hot mushroom soup";
                         }
                         else if (data.pbmi <= 26) {
-                            if (data.currentproblem=="Stomachache or stoma") {
-                                return "Take NSAID (Pain reliever)";
-                            }
-                            else if (data.currentproblem!="Stomachache or stoma") {
+                            if (data.pweight > 52) {
                                 return "Drink tea";
+                            }
+                            else if (data.pweight <= 52) {
+                                return "Take NSAID (Pain reliever)";
                             }
                         }
                     }
                 }
                 else if (data.page <= 107) {
                     if (data.pweight > 51) {
-                        if (data.hourswithproblem == null) {
-                            return "Drink tea";
+                        if (data.pweight > 54) {
+                            if (data.pbloodtype == null) {
+                                return "Take Aspirin";
+                            }
+                            else if (data.pbloodtype=="A") {
+                                if (data.pallergies == null) {
+                                    return "Take Aspirin";
+                                }
+                                else if (data.pallergies=="none") {
+                                    return "Take Aspirin";
+                                }
+                                else if (data.pallergies!="none") {
+                                    return "Take muscle reliever";
+                                }
+                            }
+                            else if (data.pbloodtype!="A") {
+                                if (data.pcurrentprescriptions == null) {
+                                    return "Drink tea";
+                                }
+                                else if (data.pcurrentprescriptions=="none") {
+                                    if (data.psmokes == null) {
+                                        return "Take Aspirin";
+                                    }
+                                    else if (data.psmokes=="0") {
+                                        return "Take Aspirin";
+                                    }
+                                    else if (data.psmokes=="1") {
+                                        return "Take acid reducer";
+                                    }
+                                }
+                                else if (data.pcurrentprescriptions!="none") {
+                                    if (data.phasepilepsy == null) {
+                                        return "Drink tea";
+                                    }
+                                    else if (data.phasepilepsy=="0") {
+                                        return "Eat fruit";
+                                    }
+                                    else if (data.phasepilepsy=="1") {
+                                        return "Drink tea";
+                                    }
+                                }
+                            }
                         }
-                        else if (data.hourswithproblem > 16) {
-                            if (data.pcognitiveimpairement == null) {
+                        else if (data.pweight <= 54) {
+                            if (data.pbloodtype == null) {
                                 return "Drink tea";
                             }
-                            else if (data.pcognitiveimpairement=="none") {
-                                if (data.hourswithproblem > 48) {
-                                    if (data.pweight > 53) {
-                                        if (data.phasosteoporosis == null) {
+                            else if (data.pbloodtype=="B") {
+                                if (data.phashypertension == null) {
+                                    return "Take Aspirin";
+                                }
+                                else if (data.phashypertension=="0") {
+                                    return "Take Aspirin";
+                                }
+                                else if (data.phashypertension=="1") {
+                                    return "Take acid reducer";
+                                }
+                            }
+                            else if (data.pbloodtype!="B") {
+                                if (data.plasthospitalization == null) {
+                                    return "Drink tea";
+                                }
+                                else if (data.plasthospitalization=="00.00.0000") {
+                                    if (data.pbmi == null) {
+                                        return "Drink tea";
+                                    }
+                                    else if (data.pbmi > 29) {
+                                        return "Eat fruit";
+                                    }
+                                    else if (data.pbmi <= 29) {
+                                        if (data.psmokes == null) {
                                             return "Drink tea";
                                         }
-                                        else if (data.phasosteoporosis=="0") {
-                                            if (data.pbmi == null) {
+                                        else if (data.psmokes=="0") {
+                                            if (data.phasosteoporosis == null) {
                                                 return "Drink tea";
                                             }
-                                            else if (data.pbmi > 28) {
+                                            else if (data.phasosteoporosis=="0") {
                                                 return "Take acid reducer";
                                             }
-                                            else if (data.pbmi <= 28) {
-                                                if (data.prespiratorydisease == null) {
-                                                    return "Drink tea";
+                                            else if (data.phasosteoporosis=="1") {
+                                                if (data.page > 101) {
+                                                    return "Take NSAID (Pain reliever)";
                                                 }
-                                                else if (data.prespiratorydisease=="Bronchitis") {
-                                                    return "Take acid reducer";
-                                                }
-                                                else if (data.prespiratorydisease!="Bronchitis") {
+                                                else if (data.page <= 101) {
                                                     return "Drink tea";
                                                 }
                                             }
                                         }
-                                        else if (data.phasosteoporosis=="1") {
-                                            if (data.hourswithproblem > 69) {
-                                                return "Take Aspirin";
-                                            }
-                                            else if (data.hourswithproblem <= 69) {
+                                        else if (data.psmokes=="1") {
+                                            if (data.pallergies == null) {
                                                 return "Drink tea";
                                             }
-                                        }
-                                    }
-                                    else if (data.pweight <= 53) {
-                                        if (data.pheartdisease == null) {
-                                            return "Take NSAID (Pain reliever)";
-                                        }
-                                        else if (data.pheartdisease=="none") {
-                                            return "Take NSAID (Pain reliever)";
-                                        }
-                                        else if (data.pheartdisease!="none") {
-                                            return "Drink tea";
-                                        }
-                                    }
-                                }
-                                else if (data.hourswithproblem <= 48) {
-                                    if (data.page > 93) {
-                                        if (data.pbmi == null) {
-                                            return "Take NSAID (Pain reliever)";
-                                        }
-                                        else if (data.pbmi > 20) {
-                                            return "Take acid reducer";
-                                        }
-                                        else if (data.pbmi <= 20) {
-                                            return "Take NSAID (Pain reliever)";
-                                        }
-                                    }
-                                    else if (data.page <= 93) {
-                                        if (data.page > 64) {
-                                            if (data.pbmi == null) {
-                                                return "Eat fruit";
-                                            }
-                                            else if (data.pbmi > 32) {
+                                            else if (data.pallergies=="none") {
                                                 return "Take NSAID (Pain reliever)";
                                             }
-                                            else if (data.pbmi <= 32) {
-                                                return "Eat fruit";
-                                            }
-                                        }
-                                        else if (data.page <= 64) {
-                                            if (data.hourswithproblem > 46) {
-                                                return "Take Aspirin";
-                                            }
-                                            else if (data.hourswithproblem <= 46) {
+                                            else if (data.pallergies!="none") {
                                                 return "Drink tea";
                                             }
                                         }
                                     }
                                 }
-                            }
-                            else if (data.pcognitiveimpairement!="none") {
-                                return "Drink tea";
-                            }
-                        }
-                        else if (data.hourswithproblem <= 16) {
-                            if (data.phasosteoporosis == null) {
-                                return "Take acid reducer";
-                            }
-                            else if (data.phasosteoporosis=="0") {
-                                return "Take acid reducer";
-                            }
-                            else if (data.phasosteoporosis=="1") {
-                                return "Drink tea";
+                                else if (data.plasthospitalization!="00.00.0000") {
+                                    if (data.pbloodtype=="O") {
+                                        return "Eat fruit";
+                                    }
+                                    else if (data.pbloodtype!="O") {
+                                        return "Take Aspirin";
+                                    }
+                                }
                             }
                         }
                     }
@@ -1524,20 +1586,20 @@ function predictBestsolution(data) {
                             return "Take NSAID (Pain reliever)";
                         }
                         else if (data.pbloodtype=="A") {
-                            if (data.hourswithproblem == null) {
+                            if (data.pbmi == null) {
                                 return "Take Aspirin";
                             }
-                            else if (data.hourswithproblem > 63) {
-                                return "Take muscle reliever";
+                            else if (data.pbmi > 21) {
+                                return "Take Aspirin";
                             }
-                            else if (data.hourswithproblem <= 63) {
-                                if (data.pbmi == null) {
-                                    return "Take Aspirin";
+                            else if (data.pbmi <= 21) {
+                                if (data.currentproblem == null) {
+                                    return "Drink tea";
                                 }
-                                else if (data.pbmi > 21) {
-                                    return "Take Aspirin";
+                                else if (data.currentproblem=="Migrane") {
+                                    return "Take acid reducer";
                                 }
-                                else if (data.pbmi <= 21) {
+                                else if (data.currentproblem!="Migrane") {
                                     return "Drink tea";
                                 }
                             }
@@ -1563,69 +1625,75 @@ function predictBestsolution(data) {
             return "Take Aspirin";
         }
         else if (data.pweight > 103) {
-            if (data.plaststroke=="01.01.2019") {
+            if (data.pallergies == null) {
                 return "Call doctor immediately";
             }
-            else if (data.plaststroke!="01.01.2019") {
+            else if (data.pallergies=="none") {
+                return "Call doctor immediately";
+            }
+            else if (data.pallergies!="none") {
                 return "Take Aspirin";
             }
         }
         else if (data.pweight <= 103) {
-            if (data.hourswithproblem == null) {
+            if (data.page == null) {
                 return "Take Aspirin";
             }
-            else if (data.hourswithproblem > 36) {
-                if (data.phasosteoporosis == null) {
-                    return "Take Aspirin";
+            else if (data.page > 95) {
+                if (data.pweight > 92) {
+                    return "Take acid reducer";
                 }
-                else if (data.phasosteoporosis=="0") {
-                    if (data.hourswithproblem > 71) {
-                        return "Take Aspirin";
+                else if (data.pweight <= 92) {
+                    if (data.page > 111) {
+                        return "Take acid reducer";
                     }
-                    else if (data.hourswithproblem <= 71) {
-                        if (data.pweight > 63) {
-                            if (data.pbmi == null) {
-                                return "Eat fruit";
-                            }
-                            else if (data.pbmi > 28) {
-                                return "Take acid reducer";
-                            }
-                            else if (data.pbmi <= 28) {
-                                if (data.pbmi > 21) {
-                                    return "Eat fruit";
-                                }
-                                else if (data.pbmi <= 21) {
-                                    return "Eat hot mushroom soup";
-                                }
-                            }
-                        }
-                        else if (data.pweight <= 63) {
-                            return "Take NSAID (Pain reliever)";
-                        }
-                    }
-                }
-                else if (data.phasosteoporosis=="1") {
-                    if (data.pweight > 90) {
-                        return "Take NSAID (Pain reliever)";
-                    }
-                    else if (data.pweight <= 90) {
+                    else if (data.page <= 111) {
                         return "Take Aspirin";
                     }
                 }
             }
-            else if (data.hourswithproblem <= 36) {
-                if (data.plaststroke=="01.01.2019") {
-                    return "Take Aspirin";
+            else if (data.page <= 95) {
+                if (data.plaststroke=="01.01.2015") {
+                    if (data.phashypertension == null) {
+                        return "Take NSAID (Pain reliever)";
+                    }
+                    else if (data.phashypertension=="0") {
+                        if (data.pmentalillness == null) {
+                            return "Eat fruit";
+                        }
+                        else if (data.pmentalillness=="Anxiety") {
+                            return "Take acid reducer";
+                        }
+                        else if (data.pmentalillness!="Anxiety") {
+                            return "Eat fruit";
+                        }
+                    }
+                    else if (data.phashypertension=="1") {
+                        return "Take NSAID (Pain reliever)";
+                    }
                 }
-                else if (data.plaststroke!="01.01.2019") {
-                    if (data.currentproblem == null) {
-                        return "Take acid reducer";
+                else if (data.plaststroke!="01.01.2015") {
+                    if (data.page > 69) {
+                        if (data.phasosteoporosis == null) {
+                            return "Take Aspirin";
+                        }
+                        else if (data.phasosteoporosis=="0") {
+                            if (data.pbloodtype == null) {
+                                return "Take Aspirin";
+                            }
+                            else if (data.pbloodtype=="O") {
+                                return "Take Aspirin";
+                            }
+                            else if (data.pbloodtype!="O") {
+                                return "Eat fruit";
+                            }
+                        }
+                        else if (data.phasosteoporosis=="1") {
+                            return "Take Aspirin";
+                        }
                     }
-                    else if (data.currentproblem=="Heartburn") {
-                        return "Take Aspirin";
-                    }
-                    else if (data.currentproblem!="Heartburn") {
-                        return "Take acid reducer";
+                    else if (data.page <= 69) {
+                        return "Take NSAID (Pain reliever)";
                     }
                 }
             }
