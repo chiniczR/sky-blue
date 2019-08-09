@@ -10,10 +10,10 @@ const mysql = require('mysql');
 
 var config =
 {
-	host: 'mysql-for-skyblue.mysql.database.azure.com',
-	user: 'chiniczR@mysql-for-skyblue',
-	password: 'for2019HACKATHON',
-	database: 'quickstartdb',
+	host: '<your_host_name>.mysql.database.azure.com',
+	user: '<your_username>@<your_server_name>',
+	password: '<your_password>',
+	database: '<your_DB>,
 	port: 3306,
 	ssl: true
 };
