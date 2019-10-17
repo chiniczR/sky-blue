@@ -1,12 +1,11 @@
 // Made for the 2019 Lustig Hackathon
-/* **********************************************************************************************************************
+/* ======================================================================================================================
 	This is a web service (action) for the Google Assistant whose objective is to provide medical advice to a patient
-	of a specific healthcare provider (the source of patient info), based on their specific symptoms (that's what the
-	Google Assistant sends us, e.g. "headache", "cold", etc.) and a decision-tree/predictive model made by BigML.com
-	based on the data the healthcare provider has on all of its clients. It was made to be hosted on Azure - both this
-	app service and the MySQL database it communicates with (where the patients' data would be stored) - but it could
-	technically work with other service host or DB.
-************************************************************************************************************************* */
+ of a specific healthcare provider (the source of patient info), based on their specific symptoms (that's what Google
+ Assistant sends us, e.g. "headache", "cold", etc.) and a decision-tree/predictive model made by BigML.com, based on the
+ data the healthcare provider has on all of its clients. It was made to be hosted on Azure - both this app service and the
+ MySQL database it communicates with (where the patients' data would be stored).
+========================================================================================================================= */
 
 const express = require('express');			// Express.js
 const bodyParser = require('body-parser');		// For parsing the JSON object we get from the DB
