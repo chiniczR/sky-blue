@@ -1,13 +1,22 @@
-const express = require('express');
-const bodyParser = require('body-parser');
-const {dialogflow } = require('actions-on-google');
+// Made for the 2019 Lustig Hackathon
+/* **********************************************************************************************************************
+	This is a web service (action) for the Google Assistant whose objective is to provide medical advice to a patient
+	of a specific healthcare provider (the source of patient info), based on their specific symptoms (that's what the
+	Google Assistant sends us, e.g. "headache", "cold", etc.) and a decision-tree/predictive model made by BigML.com
+	based on the data the healthcare provider has on all of its clients. It was made to be hosted on Azure - both this
+	app service and the MySQL database it communicates with (where the patients' data would be stored) - but it could
+	technically work with other service host or DB.
+************************************************************************************************************************* */
 
-const port = process.env.PORT || 4567;
+const express = require('express');			// Express.js
+const bodyParser = require('body-parser');		// For parsing the JSON object we get from the DB
+const {dialogflow} = require('actions-on-google');	// For the assitant's intent
+const port = process.env.PORT || 4567;			
+const app = dialogflow();				
+const mysql = require('mysql');				// For connecting to the DB
 
-const app = dialogflow();
-
-const mysql = require('mysql');
-
+/* ------------------------------------------ 1 - Connecting to the DB ------------------------------------------------- */
+// Connection configuration for the DB
 var config =
 {
 	host: '<your_host_name>.mysql.database.azure.com',
@@ -17,9 +26,10 @@ var config =
 	port: 3306,
 	ssl: true
 };
-
 const conn = new mysql.createConnection(config);
 
+// Initialization of the patient (object with all of the patient's relevant info, to be used in the predictive model
+// below) and name (a simple string to be returned to the Google Assistant action)
 var patient = null;
 var name = "No name";
 
@@ -39,23 +49,26 @@ conn.connect
 		}
 	}
 );
+/* ---------------------------------------------------------------------------------------------------------------------- */
 
+/* --------------- 2 - Querying for a specific patient and parsing their info into variable 'patient' ------------------- */
 function queryDatabase()
 {
+	// Ideally, at this point, we would have the patient's email from their Google account (the one they used to 
+	// communicate with Google Assistant) but we did not have time to implement authentication in the assistant's
+	// action, so for now, we assume we're referring to this specific sample patient: Hope Lindley (see her details
+	// on file OriginalHopeDetails.csv)
 	conn.query("SELECT pname,page,pgender,pbloodtype,pbloodrhfactor,pweight,pbmi,psmokes,pdiabetestype,pcognitiveimparment,pheartdisease,prespiratorydisease,pmentalillness,phasepilepsy,phashypertension,phasosteoporosis,phashighbloodpressure,plastseizure,plastheartevent,plaststroke,plasthospitalization,pallergies,pcurrentprescriptions FROM patient WHERE pemail = 'h.lindely@minidiq.es';",
 	function (err, results, fields) {
 		if(err) throw err;
 		else console.log('Selected ' + results.lenght + ' row(s).');
-		//for (i = 0; i < results.lenght; i++) {
-		//	console.log('Row: ' + (JSON.stringify(results[0]));
-			obj = JSON.parse(JSON.stringify(results[0]));
-			console.log('Name: ' + obj.pname)
-			console.log('Whole response: ' + JSON.stringify(results[0]));
-			name = obj.pname;
-            var fullName = name.split(" ");
-            name = fullName[0];
-			patient = obj;
-		//}
+		obj = JSON.parse(JSON.stringify(results[0]));
+		console.log('Name: ' + obj.pname)
+		console.log('Whole response: ' + JSON.stringify(results[0]));
+		name = obj.pname;
+	        var fullName = name.split(" ");
+        	name = fullName[0];
+		patient = obj;
 		console.log('Done');
 	})
 	conn.end(
@@ -64,7 +77,9 @@ function queryDatabase()
 			else console.log('Closing connection.');console.log(`Name: ${name}`);
 	});
 }
+/* ---------------------------------------------------------------------------------------------------------------------- */
 
+/* ------------------------------ 3 - Declaring the decision-making function from BigML --------------------------------- */
 /**
 *  Predictor for BESTSOLUTION from model/5ce7d078db8b1d7564000919
 *  Predictive model by BigML - Machine Learning Made Easy
@@ -1767,17 +1782,19 @@ function predictBestsolution(data) {
     }
     return null;
 }
+/* ---------------------------------------------------------------------------------------------------------------------- */
 
-app.intent('Default Welcome Intent', conv => {
+/* ------------------------------ 4 - Handling the Google Assistant intent (request) ------------------------------------ */
+app.intent('Default Welcome Intent', conv => {		// Patient initiates the conversation with this service
 	conv.ask(`Hi there! How may I help you?`);
 });
-app.intent('Default Welcome Intent - Follow Up',(conv, {problem}) => {
+app.intent('Default Welcome Intent - Follow Up',(conv, {problem}) => {	// Follow-up with specific symptom
 	patient.currentproblem = `${problem}`;
+	// Applying the predictive model's function (above) for this patient with this problem:
 	var sol = predictBestsolution(patient);
     conv.close(`Alrighty, ${name}! According to my sources, the best solution for your ${problem} is to ${sol}`);
 });
 
 const expressApp = express().use(bodyParser.json());
 expressApp.post('/', app);
-
 expressApp.listen(port);
